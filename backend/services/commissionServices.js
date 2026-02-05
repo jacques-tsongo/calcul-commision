@@ -1,15 +1,14 @@
-const { poolPromise, sql } = require('../db');
+const db = require('../db');
 
 async function calculerCommission(parrainId) {
-  const pool = await poolPromise;
 
   // 1. Charger toutes les relations
-  const relationsResult = await pool.request().query(`
-    SELECT parrain_id, filleul_id FROM relations
-  `);
+  const [relations] = await db.query(
+    'SELECT parrain_id, filleul_id FROM relations'
+  );
 
   // 2. Charger le total des achats par client
-  const achatsResult = await pool.request().query(`
+  const [achats] = await db.query(`
     SELECT client_id, SUM(montant) AS total_achats
     FROM achats
     GROUP BY client_id
@@ -17,20 +16,20 @@ async function calculerCommission(parrainId) {
 
   // 3. Construire le graphe (liste d’adjacence)
   const graphe = {};
-  relationsResult.recordset.forEach(r => {
+  relations.forEach(r => {
     if (!graphe[r.parrain_id]) {
       graphe[r.parrain_id] = [];
     }
     graphe[r.parrain_id].push(r.filleul_id);
   });
 
-  // 4. Map des achats
+  // 4. Construire la map des achats
   const achatsMap = {};
-  achatsResult.recordset.forEach(a => {
+  achats.forEach(a => {
     achatsMap[a.client_id] = a.total_achats;
   });
 
-  // 5. BFS (comme dans le pseudo-code)
+  // 5. Parcours BFS
   let commissionTotale = 0;
   const visites = new Set();
   const file = [];

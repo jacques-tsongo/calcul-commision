@@ -69,16 +69,11 @@ function selectClient(name) {
 }
 
 
-// la fonciton qui charge les clientss
+// la fonciton qui charge les clients
 const client = ["jacques","janvier","john","joel","gerant"]
 const select = document.getElementById("clients")
-console.log(select);
-
 
 client.forEach(cl =>{
     select.innerHTML += `<option value="${cl}">${cl}</option>`
 })
-
-
-    console.log(select.value);
 

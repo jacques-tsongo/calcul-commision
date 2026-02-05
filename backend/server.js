@@ -22,7 +22,12 @@ app.use('/api/commissions', commissionRoutes);
  app.get('/', (req, res) => {
   res.status(200).render('index');
 });
+
+
+
+//le port d'ecoute du serveur
 const PORT = 3100;
+
 app.listen(PORT, () => {
   console.log(` Serveur lancé sur http://localhost:${PORT}`);
 });
