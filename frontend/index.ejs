@@ -56,28 +56,14 @@
     <!-- details du client -->
     <section>
         <h2>Détails du client</h2>
-        <p><strong>Client sélectionné :</strong> <span id="selectedClient">Aucun</span></p>
+        <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
         <p>Filleuls directs : <span id="directs">-</span></p>
         <p>Filleuls indirects : <span id="indirects">-</span></p>
         <p>Total commissions : <span id="commissions">0 $</span></p>
     </section>
 
     <script src="./js/index.js"></script>
-    <script>
-        // Charger les données initialesasync function chargerCommissions(parrainId) {
-        async function chargerCommissions(parrainId) {
-            const response = await fetch(
-                `http://localhost:3100/api/commissions/${parrainId}`
-            );
-
-            const data = await response.json();
-            console.log(data);
-        }
-
-        chargerCommissions(4);
-
-
-    </script>
+    <script></script>
 </body>
 
 </html>

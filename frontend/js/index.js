@@ -70,10 +70,41 @@ function selectClient(name) {
 
 
 // la fonciton qui charge les clients
-const client = ["jacques","janvier","john","joel","gerant"]
+const client = ["Alice","Bob","Charlie","David","Emma","Frank","Grace","Henry"]
 const select = document.getElementById("clients")
 
 client.forEach(cl =>{
     select.innerHTML += `<option value="${cl}">${cl}</option>`
 })
 
+
+// appel du back dans le front pour calculer les commissions
+
+async function chargerCommission(clientId, nomClient) {
+  const response = await fetch(`/api/commissions/${clientId}`);
+  const data = await response.json();
+
+  console.log(data); // tu l'as déjà vu → ça marche
+
+  afficherDetailsClient(nomClient, data);
+}
+ // on injecte les donneses du client dans la section details du client
+
+ function afficherDetailsClient(nomClient, data) {
+  document.getElementById('clientNom').textContent = nomClient;
+
+  // Pour l’instant valeurs de test
+  document.getElementById('directs').textContent = data.directs ?? '—';
+  document.getElementById('indirects').textContent = data.indirects ?? '—';
+
+  document.getElementById('commissions').textContent =
+    data.commission_totale + ' $';
+}
+ // savoir quel client est selectionne et appeler la fonction chargerCommission
+
+ select.addEventListener('change', (e) => {
+  const clientId = e.target.value;
+  const nomClient = e.target.options[e.target.selectedIndex].text;
+
+  chargerCommission(clientId, nomClient);
+});

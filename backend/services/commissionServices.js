@@ -14,6 +14,9 @@ async function calculerCommission(parrainId) {
     GROUP BY client_id
   `);
 
+  // charger tous les clients (optionnel, mais peut être utile pour d'autres fonctionnalités)
+  const [clients] = await db.query('SELECT nom FROM clients');
+
   // 3. Construire le graphe (liste d’adjacence)
   const graphe = {};
   relations.forEach(r => {
