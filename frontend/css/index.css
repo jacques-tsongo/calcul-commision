@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+section {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+input {
+    padding: 8px;
+    margin-right: 5px;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.display {
+    display: flex;
+    justify-content: space-between;
+}
+
+.display div {
+    width: 30%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #eef;
+    padding: 6px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+
+/* ============== */
+#clients{
+    width: 100px;
+    height: 35px;
+    background: #e7e1e1;
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#clients option{
+    background: #0000007a;
+    margin: 5px;
+    color: white;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Réseau de Clients & Commissions</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+    <h1>Gestion du réseau marketing</h1>
+
+    <!-- Ajouter un client -->
+    <section>
+        <h2>Ajouter un client</h2>
+        <input type="text" id="clientName" placeholder="Nom du client">
+        <button onclick="addClient()">Ajouter</button>
+    </section>
+
+    <!-- Ajouter une relation -->
+    <section>
+        <h2>Ajouter une relation (Parrain → Filleul)</h2>
+        <select name="clients" id="clients">
+        </select>
+        <input type="text" id="filleul" placeholder="Filleul">
+        <button onclick="addRelation()">Ajouter</button>
+    </section>
+
+    <!-- Ajouter un achat -->
+    <section>
+        <h2>Ajouter un achat</h2>
+        <input type="text" id="buyer" placeholder="Client">
+        <input type="number" id="amount" placeholder="Montant ($)">
+        <button onclick="addAchat()">Ajouter</button>
+    </section>
+
+    <!-- Affichage -->
+    <section class="display">
+        <div>
+            <h3>Clients</h3>
+            <ul id="clientsList"></ul>
+        </div>
+
+        <div>
+            <h3>Relations</h3>
+            <ul id="relationsList"></ul>
+        </div>
+
+        <div>
+            <h3>Achats</h3>
+            <ul id="achatsList"></ul>
+        </div>
+    </section>
+
+    <!-- details du client -->
+    <section>
+        <h2>Détails du client</h2>
+        <p><strong>Client sélectionné :</strong> <span id="selectedClient">Aucun</span></p>
+        <p>Filleuls directs : <span id="directs">-</span></p>
+        <p>Filleuls indirects : <span id="indirects">-</span></p>
+        <p>Total commissions : <span id="commissions">0 $</span></p>
+    </section>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>
