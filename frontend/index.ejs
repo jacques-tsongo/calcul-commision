@@ -13,26 +13,35 @@
 
     <!-- Ajouter un client -->
     <section>
-        <h2>Ajouter un client</h2>
-        <input type="text" id="clientName" placeholder="Nom du client">
-        <button onclick="addClient()">Ajouter</button>
+        <form action="/api/clients" method="post">
+            <h2>Ajouter un client</h2>
+            <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+            <button type="submit">Ajouter</button>
+        </form>
     </section>
 
     <!-- Ajouter une relation -->
-    <section>
-        <h2>Ajouter une relation (Parrain → Filleul)</h2>
-        <select name="clients" id="clients">
-        </select>
-        <input type="text" id="filleul" placeholder="Filleul">
-        <button onclick="addRelation()">Ajouter</button>
-    </section>
+    <form action="/api/commissions/relations" method="POST">
+        <h2>Ajouter une relation</h2>
+
+        <label>Parrain :</label>
+        <select name="parrain_id" id="clients"></select>
+
+        <label>Filleul :</label>
+        <select name="filleul_id" id="filleulSelect"></select>
+
+        <button type="submit">Lier les deux</button>
+    </form>
 
     <!-- Ajouter un achat -->
     <section>
-        <h2>Ajouter un achat</h2>
-        <input type="text" id="buyer" placeholder="Client">
-        <input type="number" id="amount" placeholder="Montant ($)">
-        <button onclick="addAchat()">Ajouter</button>
+        <form action="/api/commissions/achats" method="POST">
+            <h2>Ajouter un achat</h2>
+            <label>Client qui achète :</label>
+            <select name="client_id" id="buyerSelect"></select> <input type="number" name="montant"
+                placeholder="Montant ($)" required>
+            <button type="submit">Enregistrer l'achat</button>
+        </form>
     </section>
 
     <!-- Affichage -->

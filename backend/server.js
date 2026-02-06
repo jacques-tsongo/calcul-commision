@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const commissionRoutes = require('./routes/commissions');
+const clientRoutes = require('./routes/clients');
+
 
 const app = express();
 app.use(cors());
@@ -18,8 +20,10 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/commissions', commissionRoutes);
- // enovie de la premiere route de la page acceuil
- app.get('/', (req, res) => {
+app.use('/api/clients', clientRoutes);
+
+// enovie de la premiere route de la page acceuil
+app.get('/', (req, res) => {
   res.status(200).render('index');
 });
 
