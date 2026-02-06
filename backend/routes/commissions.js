@@ -3,6 +3,43 @@ const router = express.Router();
 const db = require('../db'); // On utilise ton fichier db.js MySQL
 const { calculerCommission } = require('../services/commissionServices');
 
+
+router.get('/relations', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT parrain_id, filleul_id FROM relations');
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+// Route pour ajouter une relation (Correction MySQL)
+router.post("/relations", async (req, res) => {
+    const { parrain_id, filleul_id } = req.body;
+    try {
+        await db.query("INSERT INTO relations (parrain_id, filleul_id) VALUES (?, ?)", [parrain_id, filleul_id]);
+        
+        // rediriger vers la page d'accueil pour voir les changements (optionnel, surtout si tu utilises fetch côté client)
+        res.redirect('/');
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
+// Route pour ajouter un achat (Correction MySQL)
+router.post("/achats", async (req, res) => {
+    const { client_id, montant } = req.body;
+    try {
+        await db.query("INSERT INTO achats (client_id, montant, date_achat) VALUES (?, ?, NOW())", [client_id, montant]);
+        res.json({ message: "Achat ajouté" });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
 // GET /api/commissions/:parrainId
 router.get('/:parrainId', async (req, res) => {
     try {
@@ -44,26 +81,8 @@ router.get('/:parrainId', async (req, res) => {
     }
 });
 
-// Route pour ajouter un achat (Correction MySQL)
-router.post("/achats", async (req, res) => {
-    const { client_id, montant } = req.body;
-    try {
-        await db.query("INSERT INTO achats (client_id, montant, date_achat) VALUES (?, ?, NOW())", [client_id, montant]);
-        res.json({ message: "Achat ajouté" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
 
-// Route pour ajouter une relation (Correction MySQL)
-router.post("/relations", async (req, res) => {
-    const { parrain_id, filleul_id } = req.body;
-    try {
-        await db.query("INSERT INTO relations (parrain_id, filleul_id) VALUES (?, ?)", [parrain_id, filleul_id]);
-        res.json({ message: "Relation ajoutée" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
+
+
 
 module.exports = router;

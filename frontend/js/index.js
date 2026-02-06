@@ -10,6 +10,8 @@ async function loadAllData() {
     try {
         const response = await fetch(`${API_URL}/clients`);
         const clients = await response.json();
+        console.log(clients);
+        
 
         // Récupération des éléments du DOM
         const selectParrain = document.getElementById("clients");
@@ -96,9 +98,9 @@ async function loadRelations() {
         const ul = document.getElementById("relationsList");
         if (ul) {
             ul.innerHTML = "";
-            data.forEach(r => {
+            data.forEach(R => {
                 const li = document.createElement("li");
-                li.textContent = `${r.parrain} → ${r.filleul}`;
+                li.textContent = `${R.parrain} → ${R.filleul}`;
                 ul.appendChild(li);
             });
         }
