@@ -11,6 +11,20 @@
 
     <h1>Gestion du réseau marketing</h1>
 
+    <!-- le menu de navigation de l'application -->
+
+    <div class="menu">
+        <nav class="navig">
+            <ul>
+                <li><button href="#ajouter-client">Ajouter un client</button></li>
+                <li><button href="#ajouter-relation">Ajouter une relation</button></li>
+                <li><button href="#ajouter-achat">Ajouter un achat</button></li>
+                <li><button href="#afficher-reseau">Afficher le réseau de commissions</button></li>
+                <li><button href="#afficher-detail-client">Afficher le détail du client</button></li>
+            </ul>
+        </nav>
+    </div>
+
     <!-- Ajouter un client -->
     <section>
         <form action="/api/clients" method="post">
@@ -20,7 +34,10 @@
         </form>
     </section>
 
-    <!-- Ajouter une relation -->
+
+    
+<!-- 
+    <!-- Ajouter une relation 
     <form action="/api/commissions/relations" method="POST">
         <h2>Ajouter une relation</h2>
 
@@ -33,7 +50,7 @@
         <button type="submit">Lier les deux</button>
     </form>
 
-    <!-- Ajouter un achat -->
+    <!-- Ajouter un achat 
     <section>
         <form action="/api/commissions/achats" method="POST">
             <h2>Ajouter un achat</h2>
@@ -44,7 +61,7 @@
         </form>
     </section>
 
-    <!-- Affichage -->
+    <!-- Affichage 
     <section class="display">
         <div>
             <h3>Clients</h3>
@@ -62,15 +79,16 @@
         </div>
     </section>
 
-    <!-- details du client -->
+    <!-- details du client 
     <section>
         <h2>Détails du client</h2>
         <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
         <p>Filleuls directs : <span id="directs">-</span></p>
         <p>Filleuls indirects : <span id="indirects">-</span></p>
         <p>Total commissions : <span id="commissions">0 $</span></p>
-    </section>
+    </section>   
 
+     -->
     <script src="./js/index.js"></script>
     <script></script>
 </body>

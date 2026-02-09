@@ -47,15 +47,20 @@ router.post("/relations", async (req, res) => {
 
 
 // Route pour ajouter un achat (Correction MySQL)
-router.post("/achats", async (req, res) => {
-    const { client_id, montant } = req.body;
+// GET /api/commissions/achats
+router.get('/achats', async (req, res) => {
     try {
-        await db.query("INSERT INTO achats (client_id, montant, date_achat) VALUES (?, ?, NOW())", [client_id, montant]);
-        res.json({ message: "Achat ajouté" });
+        const [rows] = await db.query(`
+            SELECT c.nom AS client, a.montant
+            FROM achats a
+            JOIN clients c ON a.client_id = c.id
+        `);
+        res.json(rows);
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
+
 
 
 // GET /api/commissions/:parrainId

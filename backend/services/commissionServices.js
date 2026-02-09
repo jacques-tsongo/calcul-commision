@@ -32,7 +32,10 @@ async function calculerCommission(parrainId) {
     achatsMap[a.client_id] = a.total_achats;
   });
 
-  // 5. Parcours BFS
+  // Parcours BFS
+  let directs = [];
+  let indirects = [];
+
   let commissionTotale = 0;
   const visites = new Set();
   const file = [];
@@ -47,7 +50,14 @@ async function calculerCommission(parrainId) {
       const totalAchats = achatsMap[clientId] || 0;
       const taux = (niveau === 1) ? 0.05 : 0.01;
       commissionTotale += totalAchats * taux;
+
+      if (niveau === 1) {
+        directs.push(clientId);
+      } else {
+        indirects.push(clientId);
+      }
     }
+
 
     const filleuls = graphe[clientId] || [];
     for (const f of filleuls) {
