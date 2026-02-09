@@ -1,27 +1,104 @@
 let main_section = document.querySelector('.main_section');
 
-const navigation = document.querySelectorAll('.navig-itmes');
-console.log(navigation);
+document.addEventListener('DOMContentLoaded', () => {
+    main_section.innerHTML =
+        `
+       <section>
+    <form action="/api/clients" method="post">
+        <h2>Ajouter un client</h2>
+        <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+        <button type="submit">Ajouter</button>
+    </form>
+    </section>
+    `
 
-// remplir la section principale par defaut
+})
 
-// main_section.innerHTML = `
-//     <section>
-//         <form action="/api/clients" method="post">
-//             <h2>Ajouter un client</h2>
-//             <input type="text" id="clientName" name="nom" placeholder="Nom du client">
-//             <button type="submit">Ajouter</button>
-//         </form>
-//     </section>
-// `;
+function showPages(content) {
+    if (content == "ajouter-clients") {
+        main_section.innerHTML =
+            `
+           <section>
+        <form action="/api/clients" method="post">
+            <h2>Ajouter un client</h2>
+            <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+            <button type="submit">Ajouter</button>
+        </form>
+    </section>
+        `
+    }
+    else if (content == "ajouter-relation") {
+        main_section.innerHTML =
+            `
+         <form action="/api/commissions/relations" method="POST">
+        <h2>Ajouter une relation</h2>
 
+        <label>Parrain :</label>
+        <select name="parrain_id" id="clients"></select>
 
-let target = '';
-navigation.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        target = e.target.getAttribute('href').substring(1);
-        console.log(target);
+        <label>Filleul :</label>
+        <select name="filleul_id" id="filleulSelect"></select>
 
-       
-    });
-});
+        <button type="submit">Lier les deux</button>
+    </form>
+        `
+    }
+    else if (content == "ajouter-achat") {
+        main_section.innerHTML =
+            `
+         <section>
+        <form action="/api/commissions/achats" method="POST">
+            <h2>Ajouter un achat</h2>
+            <label>Client qui achète :</label>
+            <select name="client_id" id="buyerSelect"></select> <input type="number" name="montant"
+                placeholder="Montant ($)" required>
+            <button type="submit">Enregistrer l'achat</button>
+        </form>
+    </section>
+        `
+    }
+    else if (content == "afficher-relations") {
+        main_section.innerHTML =
+            `
+            <section class="display">
+        <div>
+            <h3>Clients</h3>
+            <ul id="clientsList"></ul>
+        </div>
+
+        <div>
+            <h3>Relations</h3>
+            <ul id="relationsList"></ul>
+        </div>
+
+        <div>
+            <h3>Achats</h3>
+            <ul id="achatsList"></ul>
+        </div>
+    </section>
+        `
+    }
+    else if (content == "afficher-details") {
+        main_section.innerHTML =
+            `
+         <section>
+        <h2>Détails du client</h2>
+        <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
+        <p>Filleuls directs : <span id="directs">-</span></p>
+        <p>Filleuls indirects : <span id="indirects">-</span></p>
+        <p>Total commissions : <span id="commissions">0 $</span></p>
+    </section>
+        `
+    }
+    else if (content == "voir-graphique") {
+        main_section.innerHTML =
+            `
+        <section>
+    <h2>Réseau graphique de parrainage</h2>
+    <div id="network"
+    style="width:100%; height:500px; border:1px solid #ccc;">
+    </div>
+</section>
+        `
+    }
+}
