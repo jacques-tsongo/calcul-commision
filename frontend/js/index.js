@@ -64,6 +64,8 @@ async function chargerDetailsClient(id, nom) {
     try {
         const response = await fetch(`${API_URL}/commissions/${id}`);
         const data = await response.json();
+        console.log(data);
+        
 
         // Mise à jour de l'interface
         document.getElementById('clientNom').textContent = nom;

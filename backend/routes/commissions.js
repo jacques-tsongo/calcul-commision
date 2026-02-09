@@ -3,15 +3,23 @@ const router = express.Router();
 const db = require('../db'); // On utilise ton fichier db.js MySQL
 const { calculerCommission } = require('../services/commissionServices');
 
-
+// la route pour récupérer les relations (parrain-filleul) et les achats (client, montant)
 router.get('/relations', async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT parrain_id, filleul_id FROM relations');
+    const [rows] = await db.query(`
+      SELECT 
+        p.nom AS parrain,
+        f.nom AS filleul
+      FROM relations r
+      JOIN clients p ON r.parrain_id = p.id
+      JOIN clients f ON r.filleul_id = f.id
+    `);
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 router.get('/achats', async (req, res) => {
@@ -51,45 +59,45 @@ router.post("/achats", async (req, res) => {
 
 
 // GET /api/commissions/:parrainId
-router.get('/:parrainId', async (req, res) => {
-    try {
-        const parrainId = parseInt(req.params.parrainId);
-        const total = await calculerCommission(parrainId);
-        res.json({ parrainId, commission_totale: total.toFixed(2) });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: err.message });
-    }
-});
+// router.get('/:parrainId', async (req, res) => {
+//     try {
+//         const parrainId = parseInt(req.params.parrainId);
+//         const total = await calculerCommission(parrainId);
+//         res.json({ parrainId, commission_totale: total.toFixed(2) });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ error: err.message });
+//     }
+// });
 
         // Récupérer aussi les noms des directs/indirects pour le front
-// GET /api/commissions/:parrainId
 router.get('/:parrainId', async (req, res) => {
-    try {
-        const parrainId = parseInt(req.params.parrainId);
-
-        // --- SÉCURITÉ : Vérifier si l'ID est valide ---
-        if (isNaN(parrainId)) {
-            return res.status(400).json({ error: "L'ID du parrain est invalide (reçu NaN)" });
-        }
-
-        const total = await calculerCommission(parrainId);
-
-        const [directs] = await db.query(
-            'SELECT c.nom FROM relations r JOIN clients c ON r.filleul_id = c.id WHERE r.parrain_id = ?', 
-            [parrainId]
-        );
-
-        res.json({
-            parrainId,
-            directs: directs.map(d => d.nom),
-            commission_totale: total.toFixed(2)
-        });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: err.message });
+  try {
+    const parrainId = parseInt(req.params.parrainId);
+    if (isNaN(parrainId)) {
+      return res.status(400).json({ error: "ID invalide" });
     }
+
+    const total = await calculerCommission(parrainId);
+
+    const [directs] = await db.query(`
+      SELECT c.nom
+      FROM relations r
+      JOIN clients c ON r.filleul_id = c.id
+      WHERE r.parrain_id = ?
+    `, [parrainId]);
+
+    res.json({
+      parrainId,
+      directs: directs.map(d => d.nom),
+      commission_totale: total.toFixed(2)
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
+
 
 
 
