@@ -14,6 +14,16 @@ router.get('/relations', async (req, res) => {
 });
 
 
+router.get('/achats', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT client_id, montant, date_achat FROM achats');
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Route pour ajouter une relation (Correction MySQL)
 router.post("/relations", async (req, res) => {
     const { parrain_id, filleul_id } = req.body;
