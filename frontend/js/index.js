@@ -137,5 +137,53 @@ async function loadAchats() {
     } catch (e) { console.log("Pas encore d'achats à afficher"); }
 }
 
+
+
+// pour la constructioin du graphe au format graphique
+
+async function chargerGraphe() {
+    const res = await fetch(`${API_URL}/commissions/graph`);
+    const data = await res.json();
+
+    // Nodes (clients)
+    const nodes = data.clients.map(c => ({
+        id: c.id,
+        label: c.nom,
+        shape: "eclipse",
+        color: "#97C2FC",
+        font: { color: "#000000" },
+        
+    }));
+
+    // Edges (relations)
+    const edges = data.relations.map(r => ({
+        from: r.parrain_id,
+        to: r.filleul_id,
+        arrows: "to"
+    }));
+
+    const container = document.getElementById("network");
+    const graphData = {
+        nodes: new vis.DataSet(nodes),
+        edges: new vis.DataSet(edges)
+    };
+
+    const options = {
+        layout: {
+            hierarchical: {
+                direction: "UD",
+                sortMethod: "directed"
+            }
+        },
+        physics: false
+    };
+
+    new vis.Network(container, graphData, options);
+}
+
+
 // Lancement automatique au chargement du DOM
-document.addEventListener("DOMContentLoaded", loadAllData);
+document.addEventListener("DOMContentLoaded", () => {
+    loadAllData();
+    chargerGraphe();
+});
