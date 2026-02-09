@@ -15,7 +15,13 @@ async function calculerCommission(parrainId) {
   `);
 
   // charger tous les clients (optionnel, mais peut être utile pour d'autres fonctionnalités)
-  const [clients] = await db.query('SELECT nom FROM clients');
+  const [clients] = await db.query('SELECT id, nom FROM clients');
+
+  const clientsMap = {};
+  clients.forEach(c => {
+    clientsMap[c.id] = c.nom;
+  });
+
 
   // 3. Construire le graphe (liste d’adjacence)
   const graphe = {};
@@ -51,10 +57,12 @@ async function calculerCommission(parrainId) {
       const taux = (niveau === 1) ? 0.05 : 0.01;
       commissionTotale += totalAchats * taux;
 
+      const nomClient = clientsMap[clientId] || 'Inconnu';
+
       if (niveau === 1) {
-        directs.push(clientId);
+        directs.push(nomClient);
       } else {
-        indirects.push(clientId);
+        indirects.push(nomClient);
       }
     }
 
@@ -69,7 +77,12 @@ async function calculerCommission(parrainId) {
 
   }
 
-  return commissionTotale;
+  return {
+    commissionTotale,
+    directs: [...new Set(directs)],
+    indirects: [...new Set(indirects)]
+  };
+
 }
 
 module.exports = { calculerCommission };
