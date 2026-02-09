@@ -37,6 +37,31 @@ router.get('/achats', async (req, res) => {
 });
 
 
+// Graphe complet (clients + relations)
+router.get('/graph', async (req, res) => {
+    try {
+        const [clients] = await db.query(
+            'SELECT id, nom FROM clients'
+        );
+
+        const [relations] = await db.query(`
+            SELECT 
+              r.parrain_id, p.nom AS parrain,
+              r.filleul_id, f.nom AS filleul
+            FROM relations r
+            JOIN clients p ON p.id = r.parrain_id
+            JOIN clients f ON f.id = r.filleul_id
+        `);
+
+        res.json({ clients, relations });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+
+
+
 
 // Route pour ajouter une relation (Correction MySQL)
 router.post("/relations", async (req, res) => {
