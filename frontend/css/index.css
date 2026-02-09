@@ -9,6 +9,13 @@ body {
     padding: 20px;
 }
 
+/* la section principale qui contient les formulaires et les résultats */
+.main_section {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #333;
+    background: #00000084;
+}
 h1 {
     text-align: center;
 }
