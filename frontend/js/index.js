@@ -11,7 +11,7 @@ async function loadAllData() {
         const response = await fetch(`${API_URL}/clients`);
         const clients = await response.json();
         console.log(clients);
-        
+
 
         // Récupération des éléments du DOM
         const selectParrain = document.getElementById("clients");
@@ -30,7 +30,7 @@ async function loadAllData() {
             // L'ID est mis dans la "value", le NOM est le texte visible
             const createOption = () => {
                 const opt = document.createElement("option");
-                opt.value = c.id; 
+                opt.value = c.id;
                 opt.textContent = c.nom;
                 return opt;
             };
@@ -65,23 +65,31 @@ async function chargerDetailsClient(id, nom) {
         const response = await fetch(`${API_URL}/commissions/${id}`);
         const data = await response.json();
         console.log(data);
-        
+
 
         // Mise à jour de l'interface
         document.getElementById('clientNom').textContent = nom;
-        
+
         // Affichage des filleuls directs (si le tableau est vide, afficher 'Aucun')
-        const directsText = (data.directs && data.directs.length > 0) 
-                            ? data.directs.join(', ') 
-                            : 'Aucun';
+        const directsText = (data.directs && data.directs.length > 0)
+            ? data.directs.join(', ')
+            : 'Aucun';
         document.getElementById('directs').textContent = directsText;
 
         // Affichage du total des commissions
         document.getElementById('commissions').textContent = data.commission_totale + ' $';
-        
+
         // Note: Pour les indirects, si ton backend ne les renvoie pas encore, 
         // tu peux laisser un '-' ou adapter ton calcul BFS
-        document.getElementById('indirects').textContent = "Calculé dans le total";
+
+        const indirectsText =
+            Array.isArray(data.indirects) && data.indirects.length > 0
+                ? data.indirects.join(', ')
+                : 'Aucun';
+
+        document.getElementById('indirects').textContent = indirectsText;
+
+
 
     } catch (err) {
         console.error("Erreur lors de la récupération des détails :", err);

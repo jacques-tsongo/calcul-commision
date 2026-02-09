@@ -22,14 +22,20 @@ router.get('/relations', async (req, res) => {
 
 
 
+// GET /api/commissions/achats
 router.get('/achats', async (req, res) => {
-  try {
-    const [rows] = await db.query('SELECT client_id, montant, date_achat FROM achats');
-    res.json(rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+    try {
+        const [rows] = await db.query(`
+            SELECT c.nom AS client, a.montant
+            FROM achats a
+            JOIN clients c ON a.client_id = c.id
+        `);
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
+
 
 
 // Route pour ajouter une relation (Correction MySQL)
@@ -47,20 +53,15 @@ router.post("/relations", async (req, res) => {
 
 
 // Route pour ajouter un achat (Correction MySQL)
-// GET /api/commissions/achats
-router.get('/achats', async (req, res) => {
+router.post("/achats", async (req, res) => {
+    const { client_id, montant } = req.body;
     try {
-        const [rows] = await db.query(`
-            SELECT c.nom AS client, a.montant
-            FROM achats a
-            JOIN clients c ON a.client_id = c.id
-        `);
-        res.json(rows);
+        await db.query("INSERT INTO achats (client_id, montant, date_achat) VALUES (?, ?, NOW())", [client_id, montant]);
+        res.json({ message: "Achat ajouté" });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
-
 
 
 // GET /api/commissions/:parrainId

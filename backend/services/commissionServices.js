@@ -60,12 +60,13 @@ async function calculerCommission(parrainId) {
 
 
     const filleuls = graphe[clientId] || [];
-    for (const f of filleuls) {
+    for (const f of new Set(filleuls)) {
       if (!visites.has(f)) {
         visites.add(f);
         file.push({ clientId: f, niveau: niveau + 1 });
       }
     }
+
   }
 
   return commissionTotale;
