@@ -4,14 +4,16 @@
     padding: 0
 }
 body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
     font-family: Arial, sans-serif;
-    background: #0b2947;
+    background: #010328;
     padding: 20px;
 }
 
 /* la section principale qui contient les formulaires et les résultats */
 .main_section {
-    max-width: 800px;
+    max-width: 950px;
     margin: 0 auto;
     color: #333;
     background: #00000084;
