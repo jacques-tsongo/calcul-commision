@@ -17,11 +17,12 @@
 
     <div class="menu">
         <nav class="navig">
-            <button href="#ajouter-client" class="navig-itmes">Ajouter un client</button>
-            <button href="#ajouter-relation" class="navig-itmes">Ajouter une relation</button>
-            <button href="#ajouter-achat" class="navig-itmes">Ajouter un achat</button>
-            <button href="#afficher-reseau" class="navig-itmes">Afficher le réseau de commissions</button>
-            <button href="#afficher-detail-client" class="navig-itmes">Afficher le détail du client</button>
+            <button onclick="showPages('ajouter-clients')" class="navig-itmes">Ajouter un client</button>
+            <button onclick="showPages('ajouter-relation')" class="navig-itmes">Ajouter une relation</button>
+            <button onclick="showPages('ajouter-achat')" class="navig-itmes">Ajouter un achat</button>
+            <button onclick="showPages('afficher-relations')" class="navig-itmes">Afficher le réseau de commissions</button>
+            <button onclick="showPages('afficher-details')" class="navig-itmes">Afficher le détail du client</button>
+            <button onclick="showPages('voir-graphique')" class="navig-itmes">Voir le graphe du réseau</button>
             
         </nav>
     </div>
@@ -29,7 +30,7 @@
     <section class="main_section"></section>
 
 
-    <!-- Ajouter un client -->
+    <!-- Ajouter un client 
     <section>
         <form action="/api/clients" method="post">
             <h2>Ajouter un client</h2>
@@ -105,10 +106,10 @@
     </div>
 </section>
 
-<!-- VIS.JS 
+<!-- VIS.JS -->
+
 <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
 
--->
     <script src="./js/index.js"></script>
     <script src="./js/single_page.js"></script>
 </body>
