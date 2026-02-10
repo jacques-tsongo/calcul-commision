@@ -17,9 +17,15 @@ body {
     margin: 0 auto;
     color: #333;
     background: #00000084;
+    margin: 0;
+    padding: 0;
 }
-h1 {
+.title_appli {
     text-align: center;
+    font-style: italic;
+    font-weight: 100;
+    letter-spacing: 3px;
+    padding: 20px 0;
 }
 
 section {
