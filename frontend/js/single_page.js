@@ -82,26 +82,26 @@ function showPages(content) {
         main_section.innerHTML =
             `
             <div>
-            <h3>Clients</h3>
-            <ul id="clientsList"></ul>
-        </div>
-         <section>
-        <h2>Détails du client</h2>
-        <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
-        <p>Filleuls directs : <span id="directs">-</span></p>
-        <p>Filleuls indirects : <span id="indirects">-</span></p>
-        <p>Total commissions : <span id="commissions">0 $</span></p>
-    </section>
+                <h3>Clients</h3>
+                <ul id="clientsList"></ul>
+            </div>
+            <section>
+                <h2>Détails du client</h2>
+                <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
+                <p>Filleuls directs : <span id="directs">-</span></p>
+                <p>Filleuls indirects : <span id="indirects">-</span></p>
+                <p>Total commissions : <span id="commissions">0 $</span></p>
+            </section>
         `
     }
     else if (content == "voir-graphique") {
         main_section.innerHTML =
             `
         <section>
-    <h2>Réseau graphique de parrainage</h2>
-    <div id="network"
-    style="width:100%; height:500px; border:1px solid #ccc;">
-    </div>
+  <h2>Réseau graphique de parrainage</h2>
+  <div id="cy"
+       style="width:100%; height:550px; border:1px solid #ccc;">
+  </div>
 </section>
         `
     }
