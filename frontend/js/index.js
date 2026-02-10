@@ -187,3 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
     loadAllData();
     chargerGraphe();
 });
+
+document.querySelectorAll(".navig-itmes").forEach(btn =>{
+    btn.addEventListener("click", () => {
+        loadAllData();
+        chargerGraphe();
+    })
+})
