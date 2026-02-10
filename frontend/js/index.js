@@ -10,7 +10,6 @@ async function loadAllData() {
     try {
         const response = await fetch(`${API_URL}/clients`);
         const clients = await response.json();
-        console.log(clients);
 
 
         // Récupération des éléments du DOM
@@ -145,41 +144,109 @@ async function chargerGraphe() {
     const res = await fetch(`${API_URL}/commissions/graph`);
     const data = await res.json();
 
-    // Nodes (clients)
-    const nodes = data.clients.map(c => ({
-        id: c.id,
-        label: c.nom,
-        shape: "eclipse",
-        color: "#97C2FC",
-        font: { color: "#000000" },
-        
-    }));
+    // ===============================
+    // CONSTRUCTION DES ELEMENTS
+    // ===============================
+    const elements = [];
 
-    // Edges (relations)
-    const edges = data.relations.map(r => ({
-        from: r.parrain_id,
-        to: r.filleul_id,
-        arrows: "to"
-    }));
-
-    const container = document.getElementById("network");
-    const graphData = {
-        nodes: new vis.DataSet(nodes),
-        edges: new vis.DataSet(edges)
-    };
-
-    const options = {
-        layout: {
-            hierarchical: {
-                direction: "UD",
-                sortMethod: "directed"
+    // Nœuds (clients)
+    data.clients.forEach(c => {
+        elements.push({
+            data: {
+                id: String(c.id),
+                label: c.nom
             }
-        },
-        physics: false
-    };
+        });
+    });
 
-    new vis.Network(container, graphData, options);
+    // Arêtes (relations)
+    data.relations.forEach(r => {
+        elements.push({
+            data: {
+                id: `e${r.parrain_id}_${r.filleul_id}`,
+                source: String(r.parrain_id),
+                target: String(r.filleul_id)
+            }
+        });
+    });
+
+    // ===============================
+    // INITIALISATION CYTOSCAPE
+    // ===============================
+    const cy = cytoscape({
+        container: document.getElementById('cy'),
+
+        elements: elements,
+
+        style: [
+            {
+                selector: 'node',
+                style: {
+                    'label': 'data(label)',
+                    'background-color': '#1f77b4',
+                    'color': '#fff',
+                    'text-valign': 'center',
+                    'text-halign': 'center',
+                    'font-size': '12px',
+                    'width': 45,
+                    'height': 45
+                }
+            },
+            {
+                selector: 'edge',
+                style: {
+                    'width': 2,
+                    'line-color': '#999',
+                    'target-arrow-color': '#999',
+                    'target-arrow-shape': 'triangle',
+                    'curve-style': 'bezier'
+                }
+            }
+        ],
+
+        layout: {
+            name: 'breadthfirst',
+            directed: true,
+            padding: 30
+        },
+
+        userZoomingEnabled: true,
+        userPanningEnabled: true,
+        boxSelectionEnabled: true,
+        autolock: false,
+        autoungrabify: false
+    });
+
+    // ===============================
+    // 🔁 RESTAURATION DES POSITIONS
+    // ===============================
+    const saved = localStorage.getItem('cytoscapePositions');
+    if (saved) {
+        const positions = JSON.parse(saved);
+        cy.nodes().forEach(node => {
+            if (positions[node.id()]) {
+                node.position(positions[node.id()]);
+            }
+        });
+    }
+
+    // ===============================
+    // 💾 SAUVEGARDE DES POSITIONS
+    // ===============================
+    cy.on('dragfree', 'node', () => {
+        const positions = {};
+        cy.nodes().forEach(n => {
+            positions[n.id()] = n.position();
+        });
+        localStorage.setItem(
+            'cytoscapePositions',
+            JSON.stringify(positions)
+        );
+        console.log('Positions sauvegardées');
+    });
 }
+
+
 
 
 // Lancement automatique au chargement du DOM
