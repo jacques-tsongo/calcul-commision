@@ -19,9 +19,9 @@ async function loadAllData() {
         const ulClients = document.getElementById("clientsList");
 
         // Nettoyage des éléments existants
-        if (selectParrain) selectParrain.innerHTML = '<option value="">-- Choisir un parrain --</option>';
-        if (selectFilleul) selectFilleul.innerHTML = '<option value="">-- Choisir un filleul --</option>';
-        if (selectAcheteur) selectAcheteur.innerHTML = '<option value="">-- Choisir l\'acheteur --</option>';
+        if (selectParrain) selectParrain.innerHTML = '<option value=""> Choisir un parrain </option>';
+        if (selectFilleul) selectFilleul.innerHTML = '<option value=""> Choisir un filleul </option>';
+        if (selectAcheteur) selectAcheteur.innerHTML = '<option value=""> Choisir l\'acheteur </option>';
         if (ulClients) ulClients.innerHTML = "";
 
         clients.forEach(c => {
