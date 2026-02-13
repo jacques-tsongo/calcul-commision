@@ -21,6 +21,7 @@ body {
     padding: 15px;
     display: flex;
     gap: 10px;
+    border-radius: 15px;
     
 }
 .title_appli {
@@ -38,6 +39,7 @@ body {
     background: linear-gradient(140deg, rgba(34, 6, 109, 0.781), rgba(3, 77, 22, 0.774));
     box-shadow: 5px 5px 4px rgba(255, 255, 255, 0.151);
     display: flex;
+    border-radius: 15px;
     justify-content: center;
     align-items: center;
 }
@@ -81,10 +83,33 @@ section {
 .relation{
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 6px #333;
+    box-shadow: 0 0 6px #ffffffa2;
+    text-align: center;
 }
-.relation h2{
+.relation form h2{
+    color: rgba(182, 182, 182, 0.801);
+    font-style: italic;
+    font-weight: 100;
+    font-size: 25px;
     
+}
+.relation form select{
+    border: 0;
+    padding: 15px;
+    background: #1619d19c;
+    border-radius: 12px;
+}
+.relation form select option{
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    text-decoration: underline;
+}
+.relation form label{
+    color: rgba(182, 182, 182, 0.801);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 3px;
 }
 
 input {
@@ -118,17 +143,3 @@ li {
     cursor: pointer;
 }
 
-
-/* ============== */
-#clients{
-    width: 100px;
-    height: 35px;
-    background: #e7e1e1;
-    border: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-#clients option{
-    background: #0000007a;
-    margin: 5px;
-    color: white;
-}
