@@ -25,31 +25,35 @@ function showPages(content) {
     if (content == "ajouter-relation") {
         main_section.innerHTML =
             `
-         <form action="/api/commissions/relations" method="POST">
+          <div class="relation">
+       <form action="/api/commissions/relations" method="POST">
         <h2>Ajouter une relation</h2>
 
-        <label>Parrain :</label>
-        <select name="parrain_id" id="clients"></select>
+        <label>Parrain </label><br>
+        <select name="parrain_id" id="clients"></select><br><br>
 
-        <label>Filleul :</label>
-        <select name="filleul_id" id="filleulSelect"></select>
+        <label>Filleul </label> <br>
+        <select name="filleul_id" id="filleulSelect"></select> <br><br>
 
         <button type="submit">Lier les deux</button>
     </form>
+    </div>
         `
     }
     else if (content == "ajouter-achat") {
         main_section.innerHTML =
             `
-         <section>
+         <div class="relation">
         <form action="/api/commissions/achats" method="POST">
             <h2>Ajouter un achat</h2>
-            <label>Client qui achète :</label>
-            <select name="client_id" id="buyerSelect"></select> <input type="number" name="montant"
+            <label>Client qui achète :</label><br>
+            <select name="client_id" id="buyerSelect"></select><br><br> 
+            <input type="number" name="montant"
                 placeholder="Montant ($)" required>
+                <br><br>
             <button type="submit">Enregistrer l'achat</button>
         </form>
-    </section>
+    </div>
         `
     }
     else if (content == "afficher-relations") {
