@@ -91,30 +91,38 @@ section {
     font-style: italic;
     font-weight: 100;
     font-size: 25px;
-    
+    margin-bottom: 15px;
 }
-.relation form select{
+.relation form select, .relation form input{
     border: 0;
     padding: 15px;
     background: #1619d19c;
     border-radius: 12px;
+    width: 250px;
+    color:  white;
+    font-weight: 400;
+    font-size: 17px;
 }
-.relation form select option{
-    font-size: 16px;
-    font-weight: 300;
-    color: white;
-    text-decoration: underline;
-}
+
 .relation form label{
     color: rgba(182, 182, 182, 0.801);
     font-size: 17px;
     font-weight: 500;
     letter-spacing: 3px;
 }
-
-input {
-    padding: 8px;
-    margin-right: 5px;
+.relation form button{
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    color: rgb(214, 206, 194);
+    font-style: italic;
+    background: rgba(0, 0, 255, 0.486);
+}
+.relation form button:hover{
+    color: antiquewhite;
+    transform: scale(1.1);
+    background: rgba(0, 0, 255, 0.699);
+    
 }
 
 button {
