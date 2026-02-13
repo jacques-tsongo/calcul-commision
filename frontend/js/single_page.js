@@ -1,4 +1,4 @@
-let main_section = document.querySelector('.main_section');
+let main_section = document.querySelector('.contents');
 
 document.addEventListener('DOMContentLoaded', () => {
     main_section.innerHTML =
@@ -15,19 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function showPages(content) {
-    if (content == "ajouter-clients") {
-        main_section.innerHTML =
-            `
-           <section>
-        <form action="/api/clients" method="post">
-            <h2>Ajouter un client</h2>
-            <input type="text" id="clientName" name="nom" placeholder="Nom du client">
-            <button type="submit">Ajouter</button>
-        </form>
-    </section>
-        `
-    }
-    else if (content == "ajouter-relation") {
+    // if (content == "ajouter-clients") {
+    //     main_section.innerHTML =
+    //         `
+    // //        <section>
+    // //     <form action="/api/clients" method="post">
+    // //         <h2>Ajouter un client</h2>
+    // //         <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+    // //         <button type="submit">Ajouter</button>
+    // //     </form>
+    // // </section>
+    //     `
+    // }
+    if (content == "ajouter-relation") {
         main_section.innerHTML =
             `
          <form action="/api/commissions/relations" method="POST">

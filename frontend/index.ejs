@@ -10,35 +10,47 @@
 
 <body>
 
-
-    
     <h1 class="title_appli">Gestion du réseau marketing</h1>
-    
+
     <!-- le menu de navigation de l'application -->
 
-    <div class="menu">
-        <nav class="navig">
-            <button onclick="showPages('ajouter-clients')" class="navig-itmes">Ajouter un client</button>
-            <button onclick="showPages('ajouter-relation')" class="navig-itmes">Ajouter une relation</button>
-            <button onclick="showPages('ajouter-achat')" class="navig-itmes">Ajouter un achat</button>
-            <button onclick="showPages('afficher-relations')" class="navig-itmes">Afficher le réseau de commissions</button>
-            <button onclick="showPages('afficher-details')" class="navig-itmes">Afficher le détail du client</button>
-            <button onclick="showPages('voir-graphique')" class="navig-itmes">Voir le graphe du réseau</button>
-            
-        </nav>
-    </div>
-    
-    <section class="main_section"></section>
 
 
-    <!-- Ajouter un client 
-    <section>
-        <form action="/api/clients" method="post">
-            <h2>Ajouter un client</h2>
-            <input type="text" id="clientName" name="nom" placeholder="Nom du client">
-            <button type="submit">Ajouter</button>
-        </form>
+    <section class="main">
+        <section class="sider">
+            <!-- lna navigation  -->
+
+            <div class="menu">
+                <nav class="navig">
+                    <button onclick="showPages('ajouter-clients')" class="navig-itmes">Ajouter un client</button>
+                    <button onclick="showPages('ajouter-relation')" class="navig-itmes">Ajouter une relation</button>
+                    <button onclick="showPages('ajouter-achat')" class="navig-itmes">Ajouter un achat</button>
+                    <button onclick="showPages('afficher-relations')" class="navig-itmes">Afficher le réseau de
+                        commissions</button>
+                    <button onclick="showPages('afficher-details')" class="navig-itmes">Afficher le détail du
+                        client</button>
+                    <button onclick="showPages('voir-graphique')" class="navig-itmes">Voir le graphe du réseau</button>
+
+                </nav>
+            </div>
+
+            <section>
+                <form action="/api/clients" method="post">
+                    <h2>Ajouter un client</h2>
+                    <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+                    <button type="submit">Ajouter</button>
+                </form>
+            </section>
+
+        </section>
+
+        <div class="contents"></div>
+
+
     </section>
+
+
+    <!-- Ajouter un client -->
 
 
 
@@ -109,7 +121,7 @@
 
 <!-- VIS.JS -->
 
-<script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 
     <script src="./js/index.js"></script>
     <script src="./js/single_page.js"></script>

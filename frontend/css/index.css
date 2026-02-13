@@ -1,24 +1,27 @@
 *{
     box-sizing: border-box;
     margin: 0;
-    padding: 0
 }
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
+    color: rgb(182, 182, 182);
     font-family: Arial, sans-serif;
     background: #010328;
     padding: 20px;
 }
 
 /* la section principale qui contient les formulaires et les résultats */
-.main_section {
+.main{
     max-width: 950px;
+    width: 96%;
     margin: 0 auto;
     color: #333;
-    background: #00000084;
+    background: linear-gradient(140deg, rgba(3, 77, 22, 0.774), rgba(34, 6, 109, 0.781));
     margin: 0;
-    padding: 0;
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    
 }
 .title_appli {
     text-align: center;
@@ -28,8 +31,43 @@ body {
     padding: 20px 0;
 }
 
+/* la div qui recoit les contenus */
+.contents{
+    width: 100%;
+    max-height: 800px;
+    background: linear-gradient(140deg, rgba(3, 77, 22, 0.774), rgba(34, 6, 109, 0.781));
+}
+
+/* le sider bar de navigation */
+
+.sider{
+    width: 200px;
+    /* background: linear-gradient(100deg,rgb(114, 67, 45), rgb(112, 106, 117)); */
+}
+
+/* les bouttons de navigation */
+
+.navig{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.navig button{
+    font-size: 16px;
+    background: #00000050;
+    color: rgb(182, 182, 182);
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 0 10px #707070b0;
+    padding: 12px;
+}
+.navig button:hover{
+    background: #0000002d;
+    color: white;
+}
+
 section {
-    background: white;
+    background: linear-gradient(140deg, rgba(34, 6, 109, 0.781), rgba(3, 77, 22, 0.774));
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
