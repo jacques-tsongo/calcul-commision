@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <h2>Ajouter une relation</h2>
 
         <label>Parrain </label><br>
-        <select name="parrain_id" id="clients"></select>
+        <select name="parrain_id" id="clients"></select><br><br>
 
         <label>Filleul </label> <br>
-        <select name="filleul_id" id="filleulSelect"></select>
+        <select name="filleul_id" id="filleulSelect"></select> <br><br>
 
         <button type="submit">Lier les deux</button>
     </form>
