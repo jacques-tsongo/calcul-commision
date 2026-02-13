@@ -3,30 +3,25 @@ let main_section = document.querySelector('.contents');
 document.addEventListener('DOMContentLoaded', () => {
     main_section.innerHTML =
         `
-       <section>
-    <form action="/api/clients" method="post">
-        <h2>Ajouter un client</h2>
-        <input type="text" id="clientName" name="nom" placeholder="Nom du client">
-        <button type="submit">Ajouter</button>
+        <div class="relation">
+       <form action="/api/commissions/relations" method="POST">
+        <h2>Ajouter une relation</h2>
+
+        <label>Parrain </label><br>
+        <select name="parrain_id" id="clients"></select>
+
+        <label>Filleul </label> <br>
+        <select name="filleul_id" id="filleulSelect"></select>
+
+        <button type="submit">Lier les deux</button>
     </form>
-    </section>
+    </div>
     `
 
 })
 
 function showPages(content) {
-    // if (content == "ajouter-clients") {
-    //     main_section.innerHTML =
-    //         `
-    // //        <section>
-    // //     <form action="/api/clients" method="post">
-    // //         <h2>Ajouter un client</h2>
-    // //         <input type="text" id="clientName" name="nom" placeholder="Nom du client">
-    // //         <button type="submit">Ajouter</button>
-    // //     </form>
-    // // </section>
-    //     `
-    // }
+
     if (content == "ajouter-relation") {
         main_section.innerHTML =
             `

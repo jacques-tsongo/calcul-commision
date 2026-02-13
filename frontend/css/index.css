@@ -11,7 +11,7 @@ body {
 }
 
 /* la section principale qui contient les formulaires et les résultats */
-.main{
+.main_second{
     max-width: 950px;
     width: 96%;
     margin: 0 auto;
@@ -35,14 +35,18 @@ body {
 .contents{
     width: 100%;
     max-height: 800px;
-    background: linear-gradient(140deg, rgba(3, 77, 22, 0.774), rgba(34, 6, 109, 0.781));
+    background: linear-gradient(140deg, rgba(34, 6, 109, 0.781), rgba(3, 77, 22, 0.774));
+    box-shadow: 5px 5px 4px rgba(255, 255, 255, 0.151);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* le sider bar de navigation */
 
 .sider{
-    width: 200px;
-    /* background: linear-gradient(100deg,rgb(114, 67, 45), rgb(112, 106, 117)); */
+    max-width: 300px;
+    width: 250px;
 }
 
 /* les bouttons de navigation */
@@ -50,12 +54,12 @@ body {
 .navig{
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 12px;
 }
 .navig button{
     font-size: 16px;
     background: #00000050;
-    color: rgb(182, 182, 182);
+    color: rgba(182, 182, 182, 0.801);
     border-radius: 10px;
     border: none;
     box-shadow: 0 0 10px #707070b0;
@@ -71,6 +75,16 @@ section {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
+}
+
+/* les relations */
+.relation{
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 6px #333;
+}
+.relation h2{
+    
 }
 
 input {

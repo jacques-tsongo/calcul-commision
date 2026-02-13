@@ -17,35 +17,44 @@
 
 
     <section class="main">
-        <section class="sider">
-            <!-- lna navigation  -->
+        <section class="main_second">
 
-            <div class="menu">
-                <nav class="navig">
-                    <button onclick="showPages('ajouter-clients')" class="navig-itmes">Ajouter un client</button>
-                    <button onclick="showPages('ajouter-relation')" class="navig-itmes">Ajouter une relation</button>
-                    <button onclick="showPages('ajouter-achat')" class="navig-itmes">Ajouter un achat</button>
-                    <button onclick="showPages('afficher-relations')" class="navig-itmes">Afficher le réseau de
-                        commissions</button>
-                    <button onclick="showPages('afficher-details')" class="navig-itmes">Afficher le détail du
-                        client</button>
-                    <button onclick="showPages('voir-graphique')" class="navig-itmes">Voir le graphe du réseau</button>
+            <section class="sider">
+                <!-- lna navigation  -->
 
-                </nav>
-            </div>
+                <div class="menu">
+                    <nav class="navig">
+                        <button onclick="showPages('ajouter-clients')" class="navig-itmes">Ajouter un client</button>
+                        <button onclick="showPages('ajouter-relation')" class="navig-itmes">Ajouter une
+                            relation</button>
+                        <button onclick="showPages('ajouter-achat')" class="navig-itmes">Ajouter un achat</button>
+                        <button onclick="showPages('afficher-relations')" class="navig-itmes">Afficher le réseau de
+                            commissions</button>
+                        <button onclick="showPages('afficher-details')" class="navig-itmes">Afficher le détail du
+                            client</button>
+                        <button onclick="showPages('voir-graphique')" class="navig-itmes">Voir le graphe du
+                            réseau</button>
 
-            <section>
-                <form action="/api/clients" method="post">
-                    <h2>Ajouter un client</h2>
-                    <input type="text" id="clientName" name="nom" placeholder="Nom du client">
-                    <button type="submit">Ajouter</button>
-                </form>
+                    </nav>
+                </div>
+
             </section>
+            
+            
+            <div class="contents"></div>
+        </section>
+        
 
+        <!-- le formulaire d'ajout du client -->
+        <section>
+            <form action="/api/clients" method="post">
+                <h2>Ajouter un client</h2>
+                <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+                <button type="submit">Ajouter</button>
+            </form>
         </section>
 
-        <div class="contents"></div>
-
+        <!-- le footer sera ici en bas -->
 
     </section>
 
