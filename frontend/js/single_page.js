@@ -96,7 +96,7 @@ function showPages(content) {
     else if (content == "voir-graphique") {
         main_section.innerHTML =
             `
-        <section>
+        <section class="graph">
   <h2>Réseau graphique de parrainage</h2>
   <div id="cy"
        style="width:100%; height:550px; border:1px solid #ccc;">
