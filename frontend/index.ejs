@@ -5,10 +5,17 @@
     <meta charset="UTF-8">
     <title>Réseau de Clients & Commissions</title>
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/updateRemove.css">
     <link rel="icon" type="image/png" href="/reseau.png">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
 </head>
 
 <body>
+    <i class="fi fi-rr-user"></i>
+<i class="fi fi-rr-home"></i>
+<i class="fi fi-rr-clean"></i>
+
 
     <h1 class="title_appli">Gestion du réseau marketing</h1>
 
@@ -51,8 +58,18 @@
                 <button type="submit">Ajouter</button>
             </form>
         </section>
-
+        
         <!-- le footer sera ici en bas -->
+        
+        <div class="modif_client">
+            <form action="" method="post">
+                <h2>Modifier le client</h2>
+                <form action="/api/clientsUpdate" method="post">
+                    <input type="text" id="client_name" name="nom_modif" placeholder="Changer le nom du client">
+                    <button type="submit">Modifier</button>
+                </form>
+            </form>
+        </div>
 
     </section>
 
@@ -126,12 +143,13 @@
     </div>
 </section>
 
-<!-- VIS.JS -->
+<!-- VIS.JS 
 
-    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>  
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>  -->
 
     <script src="./js/index.js"></script>
     <script src="./js/single_page.js"></script>
+    <script src="./js/update_client.js"></script>
 </body>
 
 </html>
