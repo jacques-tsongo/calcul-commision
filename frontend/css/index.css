@@ -42,6 +42,7 @@ body {
     border-radius: 15px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 /* le sider bar de navigation */
@@ -193,9 +194,39 @@ ul {
 }
 
 li {
-    background: #eef;
+    background: rgba(1, 1, 43, 0.596);
     padding: 12px;
     margin-bottom: 10px;
     border-radius: 10px;
+}
+li:hover {
+    background: rgba(1, 1, 43, 0.596);
+    color: white;
+}
+/* details clients */
+.details{
+    background: linear-gradient(140deg, rgba(3, 77, 22, 0.774), rgba(34, 6, 109, 0.781));
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.178);
+    margin-left: 40px;
+    color: #ffffffa2;
+    width: 450px;
+    line-height: 2.3;
+}
+.client_list{
+    color : #ffffffa2;
+
+}
+.client_list ul li{
+    width: 200px;
+    text-align: center;
+    font-weight: 300;
+}
+
+input{
+    outline: none;
+    color: #333;
 }
 
