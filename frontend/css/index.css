@@ -12,16 +12,16 @@ body {
 
 /* la section principale qui contient les formulaires et les résultats */
 .main_second{
-    max-width: 950px;
     width: 96%;
     margin: 0 auto;
     color: #333;
     background: linear-gradient(140deg, rgba(3, 77, 22, 0.774), rgba(34, 6, 109, 0.781));
-    margin: 0;
+    margin: 0 2%;
     padding: 15px;
     display: flex;
     gap: 10px;
     border-radius: 15px;
+
     
 }
 .title_appli {
@@ -35,7 +35,7 @@ body {
 /* la div qui recoit les contenus */
 .contents{
     width: 100%;
-    max-height: 800px;
+    /* max-height: 800px; */
     background: linear-gradient(140deg, rgba(34, 6, 109, 0.781), rgba(3, 77, 22, 0.774));
     box-shadow: 5px 5px 4px rgba(255, 255, 255, 0.151);
     display: flex;
@@ -86,7 +86,9 @@ section {
     box-shadow: 0 0 6px #ffffffa2;
     text-align: center;
 }
-.relation form h2{
+
+/* tous le h2 de prjet prendront ce style */
+ h2{
     color: rgba(182, 182, 182, 0.801);
     font-style: italic;
     font-weight: 100;
@@ -110,7 +112,7 @@ section {
     font-weight: 500;
     letter-spacing: 3px;
 }
-.relation form button{
+.relation form button, .achats button{
     font-size: 18px;
     border-radius: 10px;
     border: none;
@@ -125,18 +127,64 @@ section {
     
 }
 
+.achats{
+    background: linear-gradient(140deg, rgba(3, 77, 22, 0.774), rgba(34, 6, 109, 0.781));
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.178);
+    max-width: 500px;
+    width: 94%;
+}
+.achats input{
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    width: 230px;
+    
+}
+
+.achats button:hover{
+    color: antiquewhite;
+    transform: scale(1.1);
+    background: rgba(0, 0, 255, 0.699);
+}
+.achats button{
+    width: 150px;
+}
+.achats form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center ;
+}
+.achats{
+    margin-top: 25px;
+    text-align: center;
+}
+/* cela pour tous les bouttons */
 button {
-    padding: 8px 12px;
+    padding: 8px;
     cursor: pointer;
 }
 
 .display {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .display div {
-    width: 30%;
+    max-width: 180px;
+}
+.graph {
+    width: 94%;
+    height: fit-content;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
 }
 
 ul {
@@ -146,8 +194,8 @@ ul {
 
 li {
     background: #eef;
-    padding: 6px;
-    margin-bottom: 5px;
-    cursor: pointer;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 10px;
 }
 
