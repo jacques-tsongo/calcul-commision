@@ -1,0 +1,10 @@
+.edit{
+    color: aqua;
+    position: absolute;
+    right: 35px;
+}
+.remove{
+    position: absolute;
+    color: red;
+    right: 5px;
+}
