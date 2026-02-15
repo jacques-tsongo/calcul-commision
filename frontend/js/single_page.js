@@ -80,11 +80,11 @@ function showPages(content) {
     else if (content == "afficher-details") {
         main_section.innerHTML =
             `
-            <div>
+            <div class="client_list">
                 <h3>Clients</h3>
                 <ul id="clientsList"></ul>
             </div>
-            <section>
+            <section class="details">
                 <h2>Détails du client</h2>
                 <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
                 <p>Filleuls directs : <span id="directs">-</span></p>
