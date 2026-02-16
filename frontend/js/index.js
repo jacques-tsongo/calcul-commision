@@ -15,20 +15,20 @@ async function loadAllData() {
     try {
         const response = await fetch(`${API_URL}/clients`);
         const clients = await response.json();
-        
-        
+
+
         // Récupération des éléments du DOM
         const selectParrain = document.getElementById("clients");
         const selectFilleul = document.getElementById("filleulSelect");
         const selectAcheteur = document.getElementById("buyerSelect");
         const ulClients = document.getElementById("clientsList");
-        
+
         // Nettoyage des éléments existants
         if (selectParrain) selectParrain.innerHTML = '<option value=""> Choisir un parrain </option>';
         if (selectFilleul) selectFilleul.innerHTML = '<option value=""> Choisir un filleul </option>';
         if (selectAcheteur) selectAcheteur.innerHTML = '<option value=""> Choisir l\'acheteur </option>';
         if (ulClients) ulClients.innerHTML = "";
-        
+
         clients.forEach(c => {
             // Création des options pour les menus déroulants (Select)
             // L'ID est mis dans la "value", le NOM est le texte visible
@@ -38,21 +38,21 @@ async function loadAllData() {
                 opt.textContent = c.nom;
                 return opt;
             };
-            
+
             if (selectParrain) selectParrain.appendChild(createOption());
             if (selectFilleul) selectFilleul.appendChild(createOption());
             if (selectAcheteur) selectAcheteur.appendChild(createOption());
-            
+
             // les icones qui stockent les icones
             let i_element_edit = document.createElement('i')
             let i_element_remove = document.createElement('i')
             let i_element_close = document.createElement('i')
-            
+
             //affectation des icones dans leurs elements
             i_element_remove.innerHTML = "<i class='fi fi-rr-home   remove'></i>";
             i_element_close.innerHTML = "<i class='fi fi-rr-close   close'></i>";
             i_element_edit.innerHTML = "<i class='fi fi-rr-edit   edit'></i>";
-            
+
             // Ajout à la liste visuelle cliquable
             // je cree un element span qui recoit les noms des clients
             let sapn = document.createElement('span')
@@ -68,22 +68,29 @@ async function loadAllData() {
 
             //les evvenements de click
             sapn.onclick = () => chargerDetailsClient(c.id, c.nom);
-            i_element_edit.onclick = () =>{
-                let div_form_update = document.querySelector(".modif_client")
-                div_form_update.innerHTML = 
-                `
-                <form action="" method="post">
-                    <h2>Modifier le client</h2>
-                    <form action="/api/clientsUpdate" method="post">
-                        <input type="text" id="client_name" name="nom_modif" placeholder="Changer le nom du client">
-                        <button type="submit">Modifier</button>
-                    </form>
+
+            i_element_edit.onclick = () => {
+
+                let formUpdate = document.querySelector(".modif_client");
+                formUpdate.innerHTML +=
+                    `
+                <h2>Modifier le client</h2>
+                <form action="/api/clientsUpdate" method="post">
+                <input type="hidden" name="id" value = '${c.id}'>
+                <input type="text" id="client_name" name="nom_modif" placeholder="Changer le nom du client" value = '${c.nom}'>
+                <button type="submit">Modifier</button>
                 </form>
-                <i class="fi fi-rr-user close"></i>
+                
                 `
-                div_form_update.classList.add("show")
+                // on affiche le formulaire
+                formUpdate.classList.add("show")
+                /// puis on cache la section pcple
                 document.querySelector(".main").classList.add("blur")
+
             };
+
+
+
             if (ulClients) {
                 ulClients.appendChild(li);
             }
@@ -99,11 +106,11 @@ async function loadAllData() {
 }
 
 // la fonction qui charge le client a modifier
- 
+
 
 /**
  * 2. CHARGER LES DÉTAILS D'UN CLIENT (Commissions et Filleuls)
- */
+*/
 async function chargerDetailsClient(id, nom) {
     try {
         const response = await fetch(`${API_URL}/commissions/${id}`);
@@ -143,7 +150,7 @@ async function chargerDetailsClient(id, nom) {
 
 /**
  * 3. CHARGER LA LISTE DES RELATIONS
- */
+*/
 async function loadRelations() {
     try {
         const res = await fetch(`${API_URL}/commissions/relations`); // Vérifie que cette route existe
@@ -163,7 +170,7 @@ async function loadRelations() {
 
 /**
  * 4. CHARGER LA LISTE DES ACHATS
- */
+*/
 async function loadAchats() {
     try {
         const res = await fetch(`${API_URL}/commissions/achats`); // Vérifie que cette route existe
@@ -300,7 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //chargerGraphe();
 });
 
-document.querySelectorAll(".navig-itmes").forEach(btn =>{
+document.querySelectorAll(".navig-itmes").forEach(btn => {
     btn.addEventListener("click", () => {
         loadAllData();
         //chargerGraphe();
@@ -313,10 +320,3 @@ document.querySelectorAll(".navig-itmes").forEach(btn =>{
 
 
 
-// icic je gere l'affichage du formulaire de modification du nom du client
-const close = document.querySelector(".close")
-close.onclick = ()=>{
-   const formUpdate=  document.querySelector(".modif_client");
-   formUpdate.className = "hidden"
-   document.querySelector(".main").classList.remove("blur")
-};
