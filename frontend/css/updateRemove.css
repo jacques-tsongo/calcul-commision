@@ -10,3 +10,38 @@
     right: 5px;
     cursor: pointer;
 }
+.close{
+    color: white;
+    background: #00000021;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 7px;
+}
+.close:hover{
+    color: red;
+    background: #ffffe9;
+}
+
+/* la div qui a le formulaire de modification du client */
+
+.show{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 30px;
+    background: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* la classe qui permet de cacher le formulaire de  modification */
+.hidden{
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.blur{
+    filter: blur(15px);
+}
