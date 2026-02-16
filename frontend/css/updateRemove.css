@@ -2,9 +2,11 @@
     color: aqua;
     position: absolute;
     right: 35px;
+    cursor: pointer;
 }
 .remove{
     position: absolute;
     color: red;
     right: 5px;
+    cursor: pointer;
 }
