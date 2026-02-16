@@ -9,8 +9,6 @@ const API_URL = "http://localhost:3100/api";
 
 // creation des elements <i></i> qui vont conteniles icones
 
-let i_element_remove = document.createElement('i')
-let i_element_close = document.createElement('i')
 
 
 async function loadAllData() {
@@ -45,27 +43,49 @@ async function loadAllData() {
             if (selectFilleul) selectFilleul.appendChild(createOption());
             if (selectAcheteur) selectAcheteur.appendChild(createOption());
             
-            
+            // les icones qui stockent les icones
             let i_element_edit = document.createElement('i')
-
+            let i_element_remove = document.createElement('i')
+            let i_element_close = document.createElement('i')
+            
+            //affectation des icones dans leurs elements
+            i_element_remove.innerHTML = "<i class='fi fi-rr-home   remove'></i>";
+            i_element_close.innerHTML = "<i class='fi fi-rr-close   close'></i>";
             i_element_edit.innerHTML = "<i class='fi fi-rr-edit   edit'></i>";
-
+            
             // Ajout à la liste visuelle cliquable
             // je cree un element span qui recoit les noms des clients
             let sapn = document.createElement('span')
             const li = document.createElement("li");
             sapn.textContent = `${c.nom} `
-            // li.innerHTML =` ${sapn}   ${i_element_edit}`;
-            // i_element_remove.innerHTML = `</i>    <i class="fi fi-rr-home remove"></i>`;
             li.className = "client-item";
             li.style.position = "relative";
-            li.appendChild(sapn)
             sapn.style.cursor = "pointer"
+            // ajout des elements span i dans l'element li de la liste
+            li.appendChild(sapn)
             li.appendChild(i_element_edit)
+            li.appendChild(i_element_remove)
+
+            //les evvenements de click
             sapn.onclick = () => chargerDetailsClient(c.id, c.nom);
+            i_element_edit.onclick = () =>{
+                let div_form_update = document.querySelector(".modif_client")
+                div_form_update.innerHTML = 
+                `
+                <form action="" method="post">
+                    <h2>Modifier le client</h2>
+                    <form action="/api/clientsUpdate" method="post">
+                        <input type="text" id="client_name" name="nom_modif" placeholder="Changer le nom du client">
+                        <button type="submit">Modifier</button>
+                    </form>
+                </form>
+                <i class="fi fi-rr-user close"></i>
+                `
+                div_form_update.classList.add("show")
+                document.querySelector(".main").classList.add("blur")
+            };
             if (ulClients) {
                 ulClients.appendChild(li);
-                // ulClients.appendChild(i_element_edit);
             }
         });
 
@@ -78,7 +98,8 @@ async function loadAllData() {
     }
 }
 
-
+// la fonction qui charge le client a modifier
+ 
 
 /**
  * 2. CHARGER LES DÉTAILS D'UN CLIENT (Commissions et Filleuls)
@@ -285,3 +306,17 @@ document.querySelectorAll(".navig-itmes").forEach(btn =>{
         //chargerGraphe();
     })
 })
+
+
+
+
+
+
+
+// icic je gere l'affichage du formulaire de modification du nom du client
+const close = document.querySelector(".close")
+close.onclick = ()=>{
+   const formUpdate=  document.querySelector(".modif_client");
+   formUpdate.className = "hidden"
+   document.querySelector(".main").classList.remove("blur")
+};
