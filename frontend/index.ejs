@@ -64,16 +64,8 @@
 
     </section>
     <!-- le formulaire de modification du client -->
-    <div class="modif_client">
-        <form action="" method="post">
-            <h2>Modifier le client</h2>
-            <form action="/api/clientsUpdate" method="post">
-                <input type="text" id="client_name" name="nom_modif" placeholder="Changer le nom du client">
-                <button type="submit">Modifier</button>
-            </form>
-        </form>
-        <i class="fi fi-rr-user close"></i>
-
+    <div class="modif_client ">
+        <i class="fi fi-rr-user close" onclick="closeForm()"></i>
     </div>
 
 
@@ -153,6 +145,19 @@
     <script src="./js/index.js"></script>
     <script src="./js/single_page.js"></script>
     <script src="./js/update_client.js"></script>
+    <script>
+        function closeForm() {
+            // ici je gere l'affichage du formulaire de modification du nom du client
+            document.querySelector(".close").onclick = () => {
+                let formUpdate = document.querySelector(".modif_client");
+                formUpdate.classList.remove = "show"
+                formUpdate.classList.add = "hidden"
+                console.log("yes!");
+
+                document.querySelector(".main").classList.remove("blur")
+            };
+        }
+    </script>
 </body>
 
 </html>
