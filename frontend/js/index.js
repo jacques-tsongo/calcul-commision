@@ -6,24 +6,31 @@ const API_URL = "http://localhost:3100/api";
  * Cette fonction s'exécute au chargement de la page.
  * Elle remplit tous les menus déroulants et la liste des clients.
  */
+
+// creation des elements <i></i> qui vont conteniles icones
+
+let i_element_remove = document.createElement('i')
+let i_element_close = document.createElement('i')
+
+
 async function loadAllData() {
     try {
         const response = await fetch(`${API_URL}/clients`);
         const clients = await response.json();
-
-
+        
+        
         // Récupération des éléments du DOM
         const selectParrain = document.getElementById("clients");
         const selectFilleul = document.getElementById("filleulSelect");
         const selectAcheteur = document.getElementById("buyerSelect");
         const ulClients = document.getElementById("clientsList");
-
+        
         // Nettoyage des éléments existants
         if (selectParrain) selectParrain.innerHTML = '<option value=""> Choisir un parrain </option>';
         if (selectFilleul) selectFilleul.innerHTML = '<option value=""> Choisir un filleul </option>';
         if (selectAcheteur) selectAcheteur.innerHTML = '<option value=""> Choisir l\'acheteur </option>';
         if (ulClients) ulClients.innerHTML = "";
-
+        
         clients.forEach(c => {
             // Création des options pour les menus déroulants (Select)
             // L'ID est mis dans la "value", le NOM est le texte visible
@@ -33,18 +40,33 @@ async function loadAllData() {
                 opt.textContent = c.nom;
                 return opt;
             };
-
+            
             if (selectParrain) selectParrain.appendChild(createOption());
             if (selectFilleul) selectFilleul.appendChild(createOption());
             if (selectAcheteur) selectAcheteur.appendChild(createOption());
+            
+            
+            let i_element_edit = document.createElement('i')
+
+            i_element_edit.innerHTML = "<i class='fi fi-rr-edit   edit'></i>";
 
             // Ajout à la liste visuelle cliquable
+            // je cree un element span qui recoit les noms des clients
+            let sapn = document.createElement('span')
             const li = document.createElement("li");
-            li.innerHTML =` ${c.nom }    <i class='fi fi-rr-edit edit'></i>    <i class="fi fi-rr-home remove"></i>`;
+            sapn.textContent = `${c.nom} `
+            // li.innerHTML =` ${sapn}   ${i_element_edit}`;
+            // i_element_remove.innerHTML = `</i>    <i class="fi fi-rr-home remove"></i>`;
             li.className = "client-item";
             li.style.position = "relative";
-            li.onclick = () => chargerDetailsClient(c.id, c.nom);
-            if (ulClients) ulClients.appendChild(li);
+            li.appendChild(sapn)
+            sapn.style.cursor = "pointer"
+            li.appendChild(i_element_edit)
+            sapn.onclick = () => chargerDetailsClient(c.id, c.nom);
+            if (ulClients) {
+                ulClients.appendChild(li);
+                // ulClients.appendChild(i_element_edit);
+            }
         });
 
         // Charger aussi les listes de relations et d'achats pour la visualisation
@@ -55,6 +77,8 @@ async function loadAllData() {
         console.error("Erreur lors du chargement des clients :", err);
     }
 }
+
+
 
 /**
  * 2. CHARGER LES DÉTAILS D'UN CLIENT (Commissions et Filleuls)
