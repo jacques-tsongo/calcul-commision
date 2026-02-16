@@ -39,9 +39,9 @@
 /* la classe qui permet de cacher le formulaire de  modification */
 .hidden{
     visibility: hidden;
-    pointer-events: none;
 }
 
 .blur{
     filter: blur(15px);
+    pointer-events: none;
 }
