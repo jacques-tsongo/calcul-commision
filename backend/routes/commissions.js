@@ -88,6 +88,13 @@ router.post("/achats", async (req, res) => {
   }
 });
 
+// route de mise a jour des noms des clients
+router.post('/clientsUpdate') , async (req,res) =>{
+  let data = req.body
+  console.log(data);
+  
+}
+
 // Récupérer aussi les noms des directs/indirects pour le front
 router.get('/:parrainId', async (req, res) => {
   try {

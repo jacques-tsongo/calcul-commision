@@ -75,7 +75,7 @@ async function loadAllData() {
                 formUpdate.innerHTML +=
                     `
                 <h2>Modifier le client</h2>
-                <form action="/api/clientsUpdate" method="post">
+                <form action="/clientsUpdate" method="post">
                 <input type="hidden" name="id" value = '${c.id}'>
                 <input type="text" id="client_name" name="nom_modif" placeholder="Changer le nom du client" value = '${c.nom}'>
                 <button type="submit">Modifier</button>
