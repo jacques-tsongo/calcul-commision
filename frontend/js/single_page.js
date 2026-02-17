@@ -60,21 +60,22 @@ function showPages(content) {
         main_section.innerHTML =
             `
             <section class="display">
-        <div>
-            <h3>Clients</h3>
-            <ul id="clientsList"></ul>
-        </div>
+                <div class="clientsBar">
+                    <div>
+                        <h3>Clients</h3>
+                        <ul id="clientsList"></ul>
+                    </div>
+                </div>
+                <div>
+                    <h3>Relations</h3>
+                    <ul id="relationsList"></ul>
+                </div>
 
-        <div>
-            <h3>Relations</h3>
-            <ul id="relationsList"></ul>
-        </div>
-
-        <div>
-            <h3>Achats</h3>
-            <ul id="achatsList"></ul>
-        </div>
-    </section>
+                <div>
+                    <h3>Achats</h3>
+                    <ul id="achatsList"></ul>
+                </div>
+            </section>
         `
     }
     else if (content == "afficher-details") {
