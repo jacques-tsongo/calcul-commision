@@ -219,9 +219,7 @@ button {
 .display div:nth-child(1) div ul li:nth-child(odd){
     background: rgba(95, 93, 95, 0.489);
 }
-.clientBar div ul{
-    /* display: grid; */
-}
+
 .clientBar{
     width: 300px;
 }

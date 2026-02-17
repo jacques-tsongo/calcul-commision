@@ -61,6 +61,7 @@ async function loadAllData() {
             li.className = "client-item";
             li.style.position = "relative";
             sapn.style.cursor = "pointer"
+            sapn.style.padding = 10+"px"
             // ajout des elements span i dans l'element li de la liste
             li.appendChild(sapn)
             li.appendChild(i_element_edit)
@@ -70,8 +71,8 @@ async function loadAllData() {
             //   1. pour aficher tous les detalis du client
             sapn.onclick = () => chargerDetailsClient(c.id, c.nom);
             //  2.  Pour modifier ( mettre a jour ) un client dans la db 
-            i_element_edit.onclick = () => {
-
+            i_element_edit.onclick = (e) => {
+                e.preventDefault();
                 let formUpdate = document.querySelector(".modif_client");
                 formUpdate.innerHTML +=
                     `
@@ -88,6 +89,7 @@ async function loadAllData() {
                 /// puis on cache la section pcple
                 document.querySelector(".main").classList.add("blur")
 
+                loadAllData(); // recharge la liste
             };
 
             //  3. Pour effacer un client de la db
