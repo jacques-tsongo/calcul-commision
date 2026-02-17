@@ -67,8 +67,9 @@ async function loadAllData() {
             li.appendChild(i_element_remove)
 
             //les evvenements de click
+            //   1. pour aficher tous les detalis du client
             sapn.onclick = () => chargerDetailsClient(c.id, c.nom);
-
+            //  2.  Pour modifier ( mettre a jour ) un client dans la db 
             i_element_edit.onclick = () => {
 
                 let formUpdate = document.querySelector(".modif_client");
@@ -87,6 +88,17 @@ async function loadAllData() {
                 /// puis on cache la section pcple
                 document.querySelector(".main").classList.add("blur")
 
+            };
+
+            //  3. Pour effacer un client de la db
+            i_element_remove.onclick = async () => {
+                if (!confirm("Voulez-vous supprimer ce client ?")) return;
+
+                await fetch(`${API_URL}/commissions/clients/${c.id}`, {
+                    method: "DELETE"
+                });
+
+                loadAllData(); // recharge la liste
             };
 
 
