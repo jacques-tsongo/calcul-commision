@@ -104,6 +104,23 @@ router.post('/clientsUpdate', async (req, res) => {
   }
 });
 
+// la route pour effacer les clients dans la db
+router.delete('/clients/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  
+  try {
+    await db.query("DELETE FROM relations WHERE parrain_id = ? OR filleul_id = ?", [id, id]);
+    await db.query("DELETE FROM achats WHERE client_id = ?", [id]);
+    await db.query("DELETE FROM clients WHERE id = ?", [id]);
+
+    res.json({ message: "Client supprimé" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 // Récupérer aussi les noms des directs/indirects pour le front
 router.get('/:parrainId', async (req, res) => {
   try {
