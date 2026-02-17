@@ -173,8 +173,7 @@ button {
 .display {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+    gap: 20px;
     width: 100%;
     color: white;
     /* position: relative; */
@@ -189,22 +188,39 @@ button {
 .display div:nth-child(1) {
     width: fit-content;
 }
-.display div:nth-child(1) div ul li i {top: 18px;}
+.display div:nth-child(2) {
+    width: fit-content;
+    background: #ffffff54;
+    padding: 15px;
+    height: fit-content;
+    border-radius: 5px;
+}
+.display div:nth-child(1) div ul li i {
+    top: 18px;
+    z-index: 20;
+}
+.display div:nth-child(1) div ul li:hover{
+    background: rgba(95, 93, 95, 0.489);
+}
 .display div:nth-child(1) div ul li {
     width: 220px;
-    margin-left: -83px;
+    margin-left: -13px;
     border-radius: 0 30px 30px 0;
-    background: rgb(151, 6, 151);
-    color: black;
     text-align: left;
     padding-left: 0;
     display: grid;
+    font-size: 16px;
+    font-weight: 600;
+    background: rgba(232, 13, 232, 0.494);
+}
+.display div:nth-child(1) div ul li:nth-child(odd):hover{
+    background: rgba(232, 13, 232, 0.494);
 }
 .display div:nth-child(1) div ul li:nth-child(odd){
-    background: rgb(232, 13, 232);
+    background: rgba(95, 93, 95, 0.489);
 }
 .clientBar div ul{
-    display: grid;
+    /* display: grid; */
 }
 .clientBar{
     width: 300px;
