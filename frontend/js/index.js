@@ -216,6 +216,16 @@ async function loadAchats() {
 //     const elements = [];
 
 //     // Nœuds (clients)
+//     data.clients.forEach(c => {
+//         elements.push({
+//             data: {
+//                 id: String(c.id),
+//                 label: c.nom
+//             }
+//         });
+//     });
+
+//     // Nœuds (clients)
 //     data.relations.forEach(r => {
 //         elements.push({
 //             data: {
@@ -227,15 +237,6 @@ async function loadAchats() {
 //         });
 //     });
 
-//     // Nœuds (clients)
-//     data.clients.forEach(c => {
-//         elements.push({
-//             data: {
-//                 id: String(c.id),
-//                 label: c.nom
-//             }
-//         });
-//     });
 
 //     // data.clients.forEach(c => {
 //     //     elements.push({
@@ -296,7 +297,7 @@ async function loadAchats() {
 //             {
 //                 selector: 'edge',
 //                 style: {
-//                     'width': 2,
+//                     'width': 'mapData(weight, 0, 3, 2, 10)',
 //                     'line-color': '#999',
 //                     'target-arrow-color': '#999',
 //                     'target-arrow-shape': 'triangle',
@@ -371,13 +372,17 @@ async function chargerGraphe() {
     // ===============================
     // ARÊTES PONDÉRÉES
     // ===============================
+
     data.relations.forEach(r => {
+
+        if (!r.parrain_id || !r.filleul_id) return;
+
         elements.push({
             data: {
                 id: `e${r.parrain_id}_${r.filleul_id}`,
                 source: String(r.parrain_id),
                 target: String(r.filleul_id),
-                weight: r.poids
+                weight: Number(r.poids)
             }
         });
     });
@@ -392,16 +397,19 @@ async function chargerGraphe() {
                 selector: 'node',
                 style: {
                     'label': 'data(label)',
-                    'background-color': '#1f77b4',
+                    'background-color': '#1f76b4',
                     'color': '#fff',
                     'text-valign': 'center',
+                    'width': 100,
+                    'font-size': '14px',
+                    'padding': '10px',
                     'text-halign': 'center'
                 }
             },
             {
                 selector: 'edge',
                 style: {
-                    'width': 'mapData(weight, 0, 1000, 2, 10)',
+                    'width': 'mapData(weight, 0, 100, 2, 10)',
                     'label': 'data(weight)',
                     'line-color': '#999',
                     'target-arrow-color': '#999',
