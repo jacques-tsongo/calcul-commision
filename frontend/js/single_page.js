@@ -99,8 +99,8 @@ function showPages(content) {
             `
         <section class="graph">
   <h2>Réseau graphique de parrainage</h2>
-  <div id="cy"
-       style="width:100%; height:550px; border:1px solid #ccc;">
+  <div id="network"
+       style="width:100%; height:700px; border:1px solid #ccc;">
   </div>
 </section>
         `
