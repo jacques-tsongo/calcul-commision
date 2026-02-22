@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Réseau de Clients & Commissions</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/css.css">
     <link rel="stylesheet" href="./css/updateRemove.css">
     <link rel="icon" type="image/png" href="/reseau.png">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
@@ -13,9 +13,6 @@
 
 <body>
     <i class="fi fi-rr-user"></i>
-    <i class="fi fi-rr-edit"></i>
-    <i class="fi fi-rr-clean"></i>
-
 
     <h1 class="title_appli">Gestion du réseau marketing</h1>
 
@@ -25,9 +22,9 @@
 
     <section class="main ">
         <section class="main_second">
-
+            <!--  --
             <section class="sider">
-                <!-- lna navigation  -->
+                <!-- lna navigation  --
 
                 <div class="menu">
                     <nav class="navig">
@@ -73,7 +70,7 @@
 
 
 
-    <!-- Ajouter une relation 
+    <!-- Ajouter une relation -->
     <form action="/api/commissions/relations" method="POST">
         <h2>Ajouter une relation</h2>
 
@@ -86,7 +83,7 @@
         <button type="submit">Lier les deux</button>
     </form>
 
-    <!-- Ajouter un achat 
+    <!-- Ajouter un achat -->
     <section>
         <form action="/api/commissions/achats" method="POST">
             <h2>Ajouter un achat</h2>
@@ -97,7 +94,7 @@
         </form>
     </section>
 
-    <!-- Affichage 
+    <!-- Affichage -->
     <section class="display">
         <div>
             <h3>Clients</h3>
@@ -115,7 +112,7 @@
         </div>
     </section>
 
-    <!-- details du client 
+    <!-- details du client -->
     <section>
         <h2>Détails du client</h2>
         <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
