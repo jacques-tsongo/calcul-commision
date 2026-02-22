@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Réseau Marketing</title>
+
+    <link rel="stylesheet" href="./css/indexe.css">
+    <link rel="stylesheet" href="./css/updateRemove.css">
+    <link rel="icon" type="image/png" href="/reseau.png">
+
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fi fi-rr-network"></i>
+            <span>MarketingNet</span>
+        </div>
+
+        <nav>
+            <button data-page="ajouter-relation">
+                <i class="fi fi-rr-link"></i> Relation
+            </button>
+
+            <button data-page="ajouter-achat">
+                <i class="fi fi-rr-shopping-cart"></i> Achat
+            </button>
+
+            <button data-page="afficher-relations">
+                <i class="fi fi-rr-list"></i> Réseau
+            </button>
+
+            <button data-page="afficher-details">
+                <i class="fi fi-rr-user"></i> Détails
+            </button>
+
+            <button data-page="voir-graphique">
+                <i class="fi fi-rr-chart-network"></i> Graphe
+            </button>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>Gestion du réseau marketing</h1>
+            <div class="user-info">
+                <i class="fi fi-rr-user"></i>
+            </div>
+        </header>
+
+        <section class="content-area contents"></section>
+
+    </main>
+</div>
+
+<div class="modif_client hidden"></div>
+
+<script src="./js/index.js"></script>
+<script src="./js/single.js"></script>
+<script src="./js/update_client.js"></script>
+
+</body>
+</html>
