@@ -1,47 +1,73 @@
-.edit{
+/* ============================= */
+/* ICONES */
+/* ============================= */
+
+.edit {
     color: aqua;
     position: absolute;
     right: 35px;
     cursor: pointer;
 }
-.remove{
+
+.remove {
     position: absolute;
     color: red;
     right: 5px;
     cursor: pointer;
 }
-.close{
+
+.close {
     color: white;
     background: #00000021;
     cursor: pointer;
     padding: 10px;
     border-radius: 7px;
 }
-.close:hover{
+
+.close:hover {
     color: red;
     background: #ffffe9;
 }
 
-/* la div qui a le formulaire de modification du client */
 
-.show{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    padding: 30px;
-    background: white;
-    color: black;
-    display: flex;
-    flex-direction: column;
+/* ============================= */
+/* MODAL PROFESSIONNEL */
+/* ============================= */
+
+.modif_client {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: none;
     justify-content: center;
     align-items: center;
-}
-/* la classe qui permet de cacher le formulaire de  modification */
-.hidden{
-    visibility: hidden;
+    z-index: 9999;
 }
 
-.blur{
-    filter: blur(15px);
-    pointer-events: none;
+/* Quand le modal est actif */
+.modif_client.show {
+    display: flex;
+}
+
+/* Contenu du modal */
+.modif_client .modal_box {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: modalFade 0.25s ease;
+}
+
+/* Animation */
+@keyframes modalFade {
+    from {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
