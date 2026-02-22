@@ -36,27 +36,76 @@ router.get('/achats', async (req, res) => {
   }
 });
 
+// router.get('/graph', async (req, res) => {
+//   try {
+//     const [clients] = await db.query(
+//       'SELECT id, nom FROM clients'
+//     );
+
+//     const [relations] = await db.query(`
+//       SELECT 
+//         r.parrain_id,
+//         r.filleul_id,
+//         f.nom AS filleul,
+//         IFNULL(SUM(a.montant), 0) AS poids
+//       FROM relations r
+//       JOIN clients f ON f.id = r.filleul_id
+//       LEFT JOIN achats a ON a.client_id = f.id
+//       GROUP BY r.parrain_id, r.filleul_id
+//     `);
+
+//     res.json({ clients, relations });
+
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 // Graphe complet (clients + relations)
+// router.get('/graph', async (req, res) => {
+//     try {
+//         const [clients] = await db.query(
+//             'SELECT id, nom FROM clients'
+//         );
+
+//         const [relations] = await db.query(`
+//             SELECT 
+//               r.parrain_id, p.nom AS parrain,
+//               r.filleul_id, f.nom AS filleul
+//             FROM relations r
+//             JOIN clients p ON p.id = r.parrain_id
+//             JOIN clients f ON f.id = r.filleul_id
+//         `);
+
+//         res.json({ clients, relations });
+//     } catch (err) {
+//         res.status(500).json({ error: err.message });
+//     }
+// });
+
+
+
 router.get('/graph', async (req, res) => {
-    try {
-        const [clients] = await db.query(
-            'SELECT id, nom FROM clients'
-        );
+  try {
+    const [clients] = await db.query(
+      'SELECT id, nom FROM clients'
+    );
 
-        const [relations] = await db.query(`
-            SELECT 
-              r.parrain_id, p.nom AS parrain,
-              r.filleul_id, f.nom AS filleul
-            FROM relations r
-            JOIN clients p ON p.id = r.parrain_id
-            JOIN clients f ON f.id = r.filleul_id
-        `);
+    const [relations] = await db.query(`
+      SELECT 
+        r.parrain_id,
+        r.filleul_id,
+        IFNULL(SUM(a.montant), 0) AS poids
+      FROM relations r
+      LEFT JOIN achats a ON a.client_id = r.filleul_id
+      GROUP BY r.parrain_id, r.filleul_id
+    `);
 
-        res.json({ clients, relations });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
+    res.json({ clients, relations });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 
