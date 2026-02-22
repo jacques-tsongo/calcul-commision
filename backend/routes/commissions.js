@@ -22,7 +22,7 @@ router.get('/relations', async (req, res) => {
 
 
 
-// GET /api/commissions/achats
+//lq route aui recupere tous les achats de la db
 router.get('/achats', async (req, res) => {
   try {
     const [rows] = await db.query(`
@@ -35,56 +35,7 @@ router.get('/achats', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
-// router.get('/graph', async (req, res) => {
-//   try {
-//     const [clients] = await db.query(
-//       'SELECT id, nom FROM clients'
-//     );
-
-//     const [relations] = await db.query(`
-//       SELECT 
-//         r.parrain_id,
-//         r.filleul_id,
-//         f.nom AS filleul,
-//         IFNULL(SUM(a.montant), 0) AS poids
-//       FROM relations r
-//       JOIN clients f ON f.id = r.filleul_id
-//       LEFT JOIN achats a ON a.client_id = f.id
-//       GROUP BY r.parrain_id, r.filleul_id
-//     `);
-
-//     res.json({ clients, relations });
-
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-
-// Graphe complet (clients + relations)
-// router.get('/graph', async (req, res) => {
-//     try {
-//         const [clients] = await db.query(
-//             'SELECT id, nom FROM clients'
-//         );
-
-//         const [relations] = await db.query(`
-//             SELECT 
-//               r.parrain_id, p.nom AS parrain,
-//               r.filleul_id, f.nom AS filleul
-//             FROM relations r
-//             JOIN clients p ON p.id = r.parrain_id
-//             JOIN clients f ON f.id = r.filleul_id
-//         `);
-
-//         res.json({ clients, relations });
-//     } catch (err) {
-//         res.status(500).json({ error: err.message });
-//     }
-// });
-
-
-
+// la route qui recupere toutes les donnees qui construisent le graphe des relations
 router.get('/graph', async (req, res) => {
   try {
     const [clients] = await db.query(
@@ -131,7 +82,7 @@ router.post("/achats", async (req, res) => {
   const { client_id, montant } = req.body;
   try {
     await db.query("INSERT INTO achats (client_id, montant, date_achat) VALUES (?, ?, NOW())", [client_id, montant]);
-    res.json({ message: "Achat ajouté" });
+    alert("Achat ajouté avec succès")
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -163,7 +114,6 @@ router.delete('/clients/:id', async (req, res) => {
     await db.query("DELETE FROM achats WHERE client_id = ?", [id]);
     await db.query("DELETE FROM clients WHERE id = ?", [id]);
 
-    res.json({ message: "Client supprimé" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
