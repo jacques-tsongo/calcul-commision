@@ -12,13 +12,13 @@
 </head>
 
 <body>
-    
+
     <h1 class="title_appli">Gestion du réseau marketing</h1>
-    
+
     <!-- le menu de navigation de l'application -->
-    
-    
-    
+
+
+
     <section class="main ">
         <section class="main_second">
             <!--  --
@@ -47,129 +47,136 @@
         
         
         <!-- le formulaire d'ajout du client -->
-        <section class="achats">
-            <h2>
-                <i class="fi fi-rr-user"></i>
-                Ajouter un client
-            </h2>
-            <form action="/api/clients" method="post">
-                <input type="text" id="clientName" name="nom" placeholder="Nom du client">
-                <button type="submit">Ajouter</button>
+            <section class="achats">
+                <h2>
+                    <i class="fi fi-rr-user"></i>
+                    Ajouter un client
+                </h2>
+                <form action="/api/clients" method="post">
+                    <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+                    <button type="submit">Ajouter</button>
+                </form>
+            </section>
+
+            <!-- le footer sera ici en bas -->
+
+
+        </section>
+        <!-- le formulaire de modification du client -->
+
+        <div class="modif_client hidden">
+
+            <div class="modal_box">
+                <h2>Modifier le client</h2>
+
+                <form id="updateForm">
+                    <input type="hidden" id="updateId" name="id">
+                    <input type="text" id="updateNom" name="nom_modif">
+                    <button type="submit">Modifier</button>
+                </form>
+
+                <i class="fi fi-rr-cross closeModal"></i>
+            </div>
+
+        </div>
+
+        <!-- Ajouter une relation -->
+        <form action="/api/commissions/relations" method="POST">
+            <h2>Ajouter une relation</h2>
+
+            <label>Parrain :</label>
+            <select name="parrain_id" id="clients"></select>
+
+            <label>Filleul :</label>
+            <select name="filleul_id" id="filleulSelect"></select>
+
+            <button type="submit">Lier les deux</button>
+        </form>
+
+        <!-- Ajouter un achat -->
+        <section>
+            <form action="/api/commissions/achats" method="POST">
+                <h2>Ajouter un achat</h2>
+                <label>Client qui achète :</label>
+                <select name="client_id" id="buyerSelect"></select> <input type="number" name="montant"
+                    placeholder="Montant ($)" required>
+                <button type="submit">Enregistrer l'achat</button>
             </form>
         </section>
 
-        <!-- le footer sera ici en bas -->
+        <!-- Affichage -->
+        <section class="display">
 
+            <div>
+                <h3>
+                    <i class="fi fi-rr-shopping-bag"></i>
+                    Clients
+                </h3>
+                <ul id="clientsList"></ul>
+            </div>
 
-    </section>
-    <!-- le formulaire de modification du client -->
-    <div class="modif_client ">
-        <i class="fi fi-rr-user close" onclick="closeForm()"></i>
-    </div>
+            <div>
+                <h3>
+                    <i class="fi fi-rr-link"></i>
+                    Relations
+                </h3>
+                <ul id="relationsList"></ul>
+            </div>
 
+            <div>
+                <h3>
+                    <i class="fi fi-rr-shopping-cart"></i>
+                    Achats
+                </h3>
+                <ul id="achatsList"></ul>
+            </div>
+        </section>
 
-    <!-- Ajouter un client -->
-
-
-
-    <!-- Ajouter une relation -->
-    <form action="/api/commissions/relations" method="POST">
-        <h2>Ajouter une relation</h2>
-
-        <label>Parrain :</label>
-        <select name="parrain_id" id="clients"></select>
-
-        <label>Filleul :</label>
-        <select name="filleul_id" id="filleulSelect"></select>
-
-        <button type="submit">Lier les deux</button>
-    </form>
-
-    <!-- Ajouter un achat -->
-    <section>
-        <form action="/api/commissions/achats" method="POST">
-            <h2>Ajouter un achat</h2>
-            <label>Client qui achète :</label>
-            <select name="client_id" id="buyerSelect"></select> <input type="number" name="montant"
-                placeholder="Montant ($)" required>
-            <button type="submit">Enregistrer l'achat</button>
-        </form>
-    </section>
-
-    <!-- Affichage -->
-    <section class="display">
-
-        <div>
-            <h3>
-                <i class="fi fi-rr-shopping-bag"></i>
-                Clients
-            </h3>
-            <ul id="clientsList"></ul>
-        </div>
-
-        <div>
-            <h3>
-                <i class="fi fi-rr-link"></i>
-                Relations
-            </h3>
-            <ul id="relationsList"></ul>
-        </div>
-
-        <div>
-            <h3>
-                <i class="fi fi-rr-shopping-cart"></i>
-                Achats
-            </h3>
-            <ul id="achatsList"></ul>
-        </div>
-    </section>
-
-    <!-- details du client -->
-    <section>
-        <h2>Détails du client</h2>
-        <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
-        <p>Filleuls directs : <span id="directs">-</span></p>
-        <p>Filleuls indirects : <span id="indirects">-</span></p>
-        <p>Total commissions : <span id="commissions">0 $</span></p>
-    </section>
-
-
-    
+        <!-- details du client -->
+        <section>
+            <h2>Détails du client</h2>
+            <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
+            <p>Filleuls directs : <span id="directs">-</span></p>
+            <p>Filleuls indirects : <span id="indirects">-</span></p>
+            <p>Total commissions : <span id="commissions">0 $</span></p>
+        </section>
 
 
 
-    <hr>
 
-<section>
-    <h2>
-        <i class="fi fi-rr-grid"></i>
-        Réseau graphique de parrainage
-    </h2>
-    <div id="network"
-    style="width:100%; height:500px; border:1px solid #ccc;">
-    </div>
-</section>
 
-<!-- VIS.JS -->
 
-    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>  
+        <hr>
 
-    <script src="./js/index.js"></script>
-    <script src="./js/single_page.js"></script>
-    <script src="./js/update_client.js"></script>
-    <script>
-        function closeForm() {
-            // ici je gere l'affichage du formulaire de modification du nom du client
-            document.querySelector(".close").onclick = () => {
-                let formUpdate = document.querySelector(".modif_client");
-                formUpdate.classList.remove = "show"
-                formUpdate.classList.add = "hidden"
-                console.log("yes!");
+        <section>
+            <h2>
+                <i class="fi fi-rr-grid"></i>
+                Réseau graphique de parrainage
+            </h2>
+            <div id="network" style="width:100%; height:500px; border:1px solid #ccc;">
+            </div>
+        </section>
 
-                document.querySelector(".main").classList.remove("blur")
-            };
-        }
-    </script>
+        <!-- VIS.JS -->
+
+        <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+        <script src="./js/index.js"></script>
+        <script src="./js/single_page.js"></script>
+        <script src="./js/update_client.js"></script>
+        <script>
+            function closeForm() {
+                // ici je gere l'affichage du formulaire de modification du nom du client
+                document.querySelector(".close").onclick = () => {
+                    let formUpdate = document.querySelector(".modif_client");
+                    formUpdate.classList.remove = "show"
+                    formUpdate.classList.add = "hidden"
+                    console.log("yes!");
+
+                    document.querySelector(".main").classList.remove("blur")
+                };
+            }
+        </script>
 </body>
 
 </html>
