@@ -16,7 +16,7 @@ body {
 }
 
 /* =========================
-   TITRE
+TITRE
 ========================= */
 .title_appli {
     text-align: center;
@@ -28,10 +28,14 @@ body {
 
 /* =========================
    CONTAINER PRINCIPAL
-========================= */
+   ========================= */
 .main {
-    max-width: 1300px;
+    /* max-width: 800px; */
     margin: auto;
+    width: 98%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
 }
 
 /* =========================
@@ -120,6 +124,9 @@ button {
     font-weight: 500;
     cursor: pointer;
     transition: 0.3s ease;
+    font-size: 27px;
+    font-family: 'Book Antiqua';
+    font-style: italic;
 }
 
 button:hover {
@@ -128,7 +135,7 @@ button:hover {
 }
 
 /* =========================
-   DISPLAY GRID
+DISPLAY GRID
 ========================= */
 .display {
     display: grid;
