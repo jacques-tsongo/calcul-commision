@@ -61,7 +61,7 @@ async function loadAllData() {
             li.className = "client-item";
             li.style.position = "relative";
             sapn.style.cursor = "pointer"
-            sapn.style.padding = 10+"px"
+            sapn.style.padding = 10 + "px"
             // ajout des elements span i dans l'element li de la liste
             li.appendChild(sapn)
             li.appendChild(i_element_edit)
@@ -216,6 +216,18 @@ async function loadAchats() {
 //     const elements = [];
 
 //     // Nœuds (clients)
+//     data.relations.forEach(r => {
+//         elements.push({
+//             data: {
+//                 id: `e${r.parrain_id}_${r.filleul_id}`,
+//                 source: String(r.parrain_id),
+//                 target: String(r.filleul_id),
+//                 weight: r.poids   // ← POIDS ICI
+//             }
+//         });
+//     });
+
+//     // Nœuds (clients)
 //     data.clients.forEach(c => {
 //         elements.push({
 //             data: {
@@ -225,22 +237,31 @@ async function loadAchats() {
 //         });
 //     });
 
+//     // data.clients.forEach(c => {
+//     //     elements.push({
+//     //         data: {
+//     //             id: String(c.id),
+//     //             label: c.nom
+//     //         }
+//     //     });
+//     // });
+
 //     // Arêtes (relations)
-//     data.relations.forEach(r => {
-//         elements.push({
-//             data: {
-//                 id: `e${r.parrain_id}_${r.filleul_id}`,
-//                 source: String(r.parrain_id),
-//                 target: String(r.filleul_id)
-//             }
-//         });
-//     });
+//     // data.relations.forEach(r => {
+//     //     elements.push({
+//     //         data: {
+//     //             id: `e${r.parrain_id}_${r.filleul_id}`,
+//     //             source: String(r.parrain_id),
+//     //             target: String(r.filleul_id)
+//     //         }
+//     //     });
+//     // });
 
 //     // ===============================
 //     // INITIALISATION CYTOSCAPE
 //     // ===============================
 //     const cy = cytoscape({
-//         container: document.getElementById('cy'),
+//         container: document.getElementById('network'), // Assure-toi que cet ID correspond à ton div
 
 //         elements: elements,
 
@@ -258,6 +279,20 @@ async function loadAchats() {
 //                     'height': 45
 //                 }
 //             },
+
+//             //{
+//             //     selector: 'edge',
+//             //     style: {
+//             //         'width': 'mapData(weight, 0, 1000, 2, 10)',
+//             //         'label': 'data(weight)',
+//             //         'font-size': '10px',
+//             //         'line-color': '#999',
+//             //         'target-arrow-color': '#999',
+//             //         'target-arrow-shape': 'triangle',
+//             //         'curve-style': 'bezier'
+//             //     }
+//             // }
+//             //}
 //             {
 //                 selector: 'edge',
 //                 style: {
@@ -315,16 +350,87 @@ async function loadAchats() {
 
 
 
+async function chargerGraphe() {
+    const res = await fetch(`${API_URL}/commissions/graph`);
+    const data = await res.json();
+
+    const elements = [];
+
+    // ===============================
+    // NŒUDS
+    // ===============================
+    data.clients.forEach(c => {
+        elements.push({
+            data: {
+                id: String(c.id),
+                label: c.nom
+            }
+        });
+    });
+
+    // ===============================
+    // ARÊTES PONDÉRÉES
+    // ===============================
+    data.relations.forEach(r => {
+        elements.push({
+            data: {
+                id: `e${r.parrain_id}_${r.filleul_id}`,
+                source: String(r.parrain_id),
+                target: String(r.filleul_id),
+                weight: r.poids
+            }
+        });
+    });
+
+    const cy = cytoscape({
+        container: document.getElementById('network'),
+
+        elements: elements,
+
+        style: [
+            {
+                selector: 'node',
+                style: {
+                    'label': 'data(label)',
+                    'background-color': '#1f77b4',
+                    'color': '#fff',
+                    'text-valign': 'center',
+                    'text-halign': 'center'
+                }
+            },
+            {
+                selector: 'edge',
+                style: {
+                    'width': 'mapData(weight, 0, 1000, 2, 10)',
+                    'label': 'data(weight)',
+                    'line-color': '#999',
+                    'target-arrow-color': '#999',
+                    'target-arrow-shape': 'triangle',
+                    'curve-style': 'bezier'
+                }
+            }
+        ],
+
+        layout: {
+            name: 'breadthfirst',
+            directed: true,
+            padding: 30
+        }
+    });
+}
+
+
+
 // Lancement automatique au chargement du DOM
 document.addEventListener("DOMContentLoaded", () => {
     loadAllData();
-    //chargerGraphe();
+    chargerGraphe();
 });
 
 document.querySelectorAll(".navig-itmes").forEach(btn => {
     btn.addEventListener("click", () => {
         loadAllData();
-        //chargerGraphe();
+        chargerGraphe();
     })
 })
 
