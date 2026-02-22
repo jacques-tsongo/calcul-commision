@@ -49,9 +49,9 @@ async function loadAllData() {
             let i_element_close = document.createElement('i')
 
             //affectation des icones dans leurs elements
-            i_element_remove.innerHTML = "<i class='fi fi-rr-home   remove'></i>";
-            i_element_close.innerHTML = "<i class='fi fi-rr-close   close'></i>";
-            i_element_edit.innerHTML = "<i class='fi fi-rr-edit   edit'></i>";
+            i_element_remove.innerHTML = "<i class='fi fi-rr-trash   remove' title='Supprimer'></i>";
+            i_element_close.innerHTML = "<i class='fi fi-rr-cross   close'></i>";
+            i_element_edit.innerHTML = "<i class='fi fi-rr-edit   edit' title='Modifier'></i>";
 
             // Ajout à la liste visuelle cliquable
             // je cree un element span qui recoit les noms des clients
