@@ -61,6 +61,20 @@ h2 {
     margin-bottom: 15px;
     color: #1e3a8a;
 }
+.achats{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.achats h2{
+    margin-top: 20px 0 0 15px;
+    text-align: center;
+}
+.achats h2 i{
+    margin-right: 8px;
+    font-size: 35px;
+    color: blue;
+}
 
 h3 {
     margin-bottom: 12px;
