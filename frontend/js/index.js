@@ -73,25 +73,16 @@ async function loadAllData() {
             //  2.  Pour modifier ( mettre a jour ) un client dans la db 
             i_element_edit.onclick = (e) => {
                 e.preventDefault();
-                let formUpdate = document.querySelector(".modif_client");
-                formUpdate.innerHTML +=
-                    `
-                <h2>Modifier le client</h2>
-                <form action="/api/commissions/clientsUpdate" method="post">                
-                <input type="hidden" name="id" value = '${c.id}'>
-                <input type="text" id="client_name" name="nom_modif" placeholder="Changer le nom du client" value = '${c.nom}'>
-                <button type="submit">Modifier</button>
-                </form>
-                
-                `
-                // on affiche le formulaire
-                formUpdate.classList.add("show")
-                /// puis on cache la section pcple
-                document.querySelector(".main").classList.add("blur")
 
-                loadAllData(); // recharge la liste
+                document.getElementById("updateId").value = c.id;
+                document.getElementById("updateNom").value = c.nom;
+
+                document.querySelector(".modif_client")
+                    .classList.add("show");
+
+                document.querySelector(".main")
+                    .classList.add("blur");
             };
-
             //  3. Pour effacer un client de la db
             i_element_remove.onclick = async () => {
                 if (!confirm("Voulez-vous supprimer ce client ?")) return;
@@ -114,10 +105,49 @@ async function loadAllData() {
         loadRelations();
         loadAchats();
 
+
     } catch (err) {
         console.error("Erreur lors du chargement des clients :", err);
     }
 }
+
+document.querySelector(".closeModal")
+    .addEventListener("click", () => {
+
+        document.querySelector(".modif_client")
+            .classList.remove("show");
+
+        document.querySelector(".main")
+            .classList.remove("blur");
+    });
+
+document.getElementById("updateForm")
+    .addEventListener("submit", async function (e) {
+
+        e.preventDefault();
+
+        const id = document.getElementById("updateId").value;
+        const nom = document.getElementById("updateNom").value;
+
+        await fetch(`${API_URL}/commissions/clientsUpdate`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: id,
+                nom_modif: nom
+            })
+        });
+
+        document.querySelector(".modif_client")
+            .classList.remove("show");
+
+        document.querySelector(".main")
+            .classList.remove("blur");
+
+        loadAllData(); // recharge proprement
+    });
 
 // la fonction qui charge le client a modifier
 
