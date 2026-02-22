@@ -394,25 +394,36 @@ async function chargerGraphe() {
 
         style: [
             {
+
                 selector: 'node',
                 style: {
                     'label': 'data(label)',
-                    'background-color': '#1f76b4',
-                    'color': '#fff',
+                    'background-color': '#00c8ff83',
+                    'background-gradient-direction': 'radial-gradient',
+                    'color': '#ffffff',
                     'text-valign': 'center',
-                    'width': 100,
-                    'font-size': '14px',
-                    'padding': '10px',
-                    'text-halign': 'center'
+                    'text-halign': 'center',
+                    'font-size': '16px',
+                    'font-weight': 'bold',
+                    'width': 150,
+                    'height': 50,
+                    'border-width': 2,
+                    'border-color': '#ffffff'
                 }
-            },
+            }
+            ,
             {
                 selector: 'edge',
                 style: {
-                    'width': 'mapData(weight, 0, 100, 2, 10)',
+                    'width': 'mapData(weight, 0, 1000, 2, 12)',
                     'label': 'data(weight)',
-                    'line-color': '#999',
-                    'target-arrow-color': '#999',
+                    'font-size': '14px',
+                    'color': '#ffffff',
+                    'text-background-color': '#000000',
+                    'text-background-opacity': 0.6,
+                    'text-background-padding': 3,
+                    'line-color': '#bbbbbb',
+                    'target-arrow-color': '#bbbbbb',
                     'target-arrow-shape': 'triangle',
                     'curve-style': 'bezier'
                 }
