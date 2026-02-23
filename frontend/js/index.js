@@ -269,7 +269,7 @@ async function chargerGraphe() {
                 selector: 'node',
                 style: {
                     'label': 'data(label)',
-                    'background-color': '#00c8ff83',
+                    'background-color': '#00c8ff',
                     'background-gradient-direction': 'radial-gradient',
                     'color': '#ffffff',
                     'text-valign': 'center',
@@ -293,8 +293,8 @@ async function chargerGraphe() {
                     'text-background-color': '#000000',
                     'text-background-opacity': 0.6,
                     'text-background-padding': 3,
-                    'line-color': '#bbbbbb',
-                    'target-arrow-color': '#bbbbbb',
+                    'line-color': '#00ffff',
+                    'target-arrow-color': '#00ffffc2',
                     'target-arrow-shape': 'triangle',
                     'curve-style': 'bezier'
                 }
