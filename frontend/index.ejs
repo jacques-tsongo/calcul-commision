@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Réseau de Clients & Commissions</title>
-    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/updateRemove.css">
     <link rel="icon" type="image/png" href="/reseau.png">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
@@ -13,14 +13,61 @@
 
 <body>
 
-    <h1 class="title_appli">Gestion du réseau marketing</h1>
-
-    <!-- le menu de navigation de l'application -->
-
-
-
     <section class="main ">
-        <!-- le formulaire d'ajout du client -->
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fi fi-rr-network"></i>
+                <span>MarketingNet</span>
+            </div>
+
+            <nav>
+                <button onclick='showPages("ajouter-achat")'>
+                    <i class="fi fi-rr-shopping-cart"></i> Achat
+                </button>
+                <button onclick="showPages('ajouter-relation')">
+                    <i class="fi fi-rr-link"></i> Relation
+                </button>
+
+
+                <button onclick="showPages('afficher-relations')">
+                    <i class="fi fi-rr-list"></i> Réseau
+                </button>
+
+                <button onclick="showPages('afficher-details')">
+                    <i class="fi fi-rr-user"></i> Détails
+                </button>
+
+                <button onclick="showPages('voir-graphique')">
+                    <i class="fi fi-rr-chart-network"></i> Graphe
+                </button>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            
+            <header class="topbar">
+                <h1>Gestion du réseau marketing</h1>
+                <div class="user-info">
+                    <i class="fi fi-rr-user"></i>
+                </div>
+            </header>
+            
+            <section class="content-area contents"></section>
+            
+        </main>
+        
+    </section>
+
+
+        <!-- <h1 class="title_appli">Gestion du réseau marketing</h1> -->
+
+        <!-- le menu de navigation de l'application -->
+
+
+
+        <!-- le formulaire d'ajout du client --
         <section class="achats">
             <h2>
                 <i class="fi fi-rr-user"></i>
@@ -37,22 +84,22 @@
         <!-- le formulaire de modification du client -->
 
         <div class="modif_client">
-
+            
             <div class="modal_box">
                 <h2>Modifier le client</h2>
-
+                
                 <form id="updateForm">
                     <input type="hidden" id="updateId" name="id">
                     <input type="text" id="updateNom" name="nom_modif">
                     <button type="submit">Modifier</button>
                 </form>
-
+                
                 <i class="fi fi-rr-cross closeModal"></i>
             </div>
-
+            
         </div>
 
-        <!-- Ajouter une relation -->
+        <!-- Ajouter une relation --
         <form action="/api/commissions/relations" method="POST">
             <h2>Ajouter une relation</h2>
 
@@ -65,7 +112,7 @@
             <button type="submit">Lier les deux</button>
         </form>
 
-        <!-- Ajouter un achat -->
+        <!-- Ajouter un achat --
         <section>
             <form action="/api/commissions/achats" method="POST">
                 <h2>Enregistrer un achat</h2>
@@ -77,7 +124,7 @@
         </section>
 
         <!-- Affichage -->
-        <!-- <section class="display"> -->
+        <!-- <section class="display"> --
         <section>
             <div>
                 <h3>
@@ -87,8 +134,8 @@
                 <ul id="clientsList"></ul>
             </div>
         </section>
-        
-        <!-- details du client -->
+
+        <!-- details du client --
         <section>
             <h2>Détails du client</h2>
             <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
@@ -114,7 +161,7 @@
                 <ul id="achatsList"></ul>
             </div>
         </section>
-        <!-- </section> -->
+        <!-- </section> --
 
 
         <section class="graphe">
@@ -125,11 +172,11 @@
             <div id="network" style="width:100%; height:600px; border:1px solid #ccc;">
             </div>
         </section>
-    </section>
     <!-- le lien ou trouver cytoscape pour visualiser le graphe -->
     <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
 
     <script src="./js/index.js"></script>
+    <script src="./js/single_page.js"></script>
     </section>
 
 </body>
