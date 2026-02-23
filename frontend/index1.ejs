@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Réseau de Clients & Commissions</title>
+    <link rel="stylesheet" href="./css/css.css">
+    <link rel="stylesheet" href="./css/updateRemove.css">
+    <link rel="icon" type="image/png" href="/reseau.png">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+</head>
+
+<body>
+
+    <section class="main ">
+
+        <h1 class="title_appli">Gestion du réseau marketing</h1>
+
+        <!-- le formulaire d'ajout du client -->
+        <section class="achats">
+            <h2>
+                <i class="fi fi-rr-user"></i>
+                Ajouter un client
+            </h2>
+            <form action="/api/clients" method="post">
+                <input type="text" id="clientName" name="nom" placeholder="Nom du client">
+                <button type="submit">Ajouter</button>
+            </form>
+        </section>
+
+
+
+        <!-- le formulaire de modification du client -->
+
+        <div class="modif_client">
+
+            <div class="modal_box">
+                <h2>Modifier le client</h2>
+
+                <form id="updateForm">
+                    <input type="hidden" id="updateId" name="id">
+                    <input type="text" id="updateNom" name="nom_modif">
+                    <button type="submit">Modifier</button>
+                </form>
+
+                <i class="fi fi-rr-cross closeModal"></i>
+            </div>
+
+        </div>
+
+        <!-- Ajouter une relation -->
+        <form action="/api/commissions/relations" method="POST">
+            <h2>Ajouter une relation</h2>
+
+            <label>Parent :</label>
+            <select name="parrain_id" id="clients"></select>
+
+            <label>Enfant :</label>
+            <select name="filleul_id" id="filleulSelect"></select>
+
+            <button type="submit">Lier les deux</button>
+        </form>
+
+        <!-- Ajouter un achat -->
+        <section>
+            <form action="/api/commissions/achats" method="POST">
+                <h2>Enregistrer un achat</h2>
+                <label>Choisir le client qui achète :</label>
+                <select name="client_id" id="buyerSelect"></select> <input type="number" name="montant"
+                    placeholder="Montant ($)" required>
+                <button type="submit">Enregistrer l'achat</button>
+            </form>
+        </section>
+
+        <!-- Affichage -->
+        <!-- <section class="display"> -->
+        <section>
+            <div>
+                <h3>
+                    <i class="fi fi-rr-shopping-bag"></i>
+                    Clients
+                </h3>
+                <ul id="clientsList"></ul>
+            </div>
+        </section>
+
+        <!-- details du client -->
+        <section>
+            <h2>Détails du client</h2>
+            <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
+            <p>Enfants directs : <span id="directs">-</span></p>
+            <p>Enfants indirects : <span id="indirects">-</span></p>
+            <p>Total des commissions : <span id="commissions">0 $</span></p>
+        </section>
+
+        <section class="display">
+            <div>
+                <h3>
+                    <i class="fi fi-rr-link"></i>
+                    Relations
+                </h3>
+                <ul id="relationsList"></ul>
+            </div>
+
+            <div>
+                <h3>
+                    <i class="fi fi-rr-shopping-cart"></i>
+                    Achats
+                </h3>
+                <ul id="achatsList"></ul>
+            </div>
+        </section>
+        <!-- </section> -->
+
+
+        <section class="graphe">
+            <h2>
+                <i class="fi fi-rr-grid"></i>
+                Réseau graphique de parrainage
+            </h2>
+            <div id="network" style="width:100%; height:600px; border:1px solid #ccc;">
+            </div>
+        </section>
+    </section>
+    <!-- le lien ou trouver cytoscape pour visualiser le graphe -->
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+    <script src="./js/index.js"></script>
+    </section>
+
+</body>
+
+</html>
