@@ -92,11 +92,17 @@ function renderPage(page) {
 
         case 'afficher-details':
             mainSection.innerHTML = `
-                <div class="card">
-                    <h2>Détails d’un client</h2>
-                    <select id="clientDetailSelect"></select>
-                    <div id="clientDetails"></div>
-                </div>
+              <div class="client_list">
+                <h3>Clients</h3>
+                <ul id="clientsList"></ul>
+            </div>
+            <section class="details card">
+                <h2>Détails du client</h2>
+                <p><strong>Client sélectionné :</strong> <span id="clientNom">Aucun</span></p>
+                <p>Filleuls directs : <span id="directs">-</span></p>
+                <p>Filleuls indirects : <span id="indirects">-</span></p>
+                <p>Total commissions : <span id="commissions">0 $</span></p>
+            </section>
             `;
             break;
 
@@ -126,4 +132,8 @@ function renderPage(page) {
         document.getElementById('loader').style.display = "none";
         loadGraph();
     }, 1000);
+
+ loadAllData();
+    chargerGraphe();
+
 }
