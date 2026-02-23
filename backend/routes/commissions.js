@@ -82,7 +82,7 @@ router.post("/achats", async (req, res) => {
   const { client_id, montant } = req.body;
   try {
     await db.query("INSERT INTO achats (client_id, montant, date_achat) VALUES (?, ?, NOW())", [client_id, montant]);
-    alert("Achat ajouté avec succès")
+    res.redirect('/');
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
