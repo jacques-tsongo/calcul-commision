@@ -177,7 +177,36 @@ button:hover {
     color: white;
     transform: translateX(5px);
 }
-.cl
+
+/* pour les listes de donnees */
+* ul{
+    list-style: none;
+}
+.client_list ul, .display div ul{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+
+}
+.client_list ul li, .display div ul li{
+    background: rgba(255, 255, 255, 0.171);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.details{
+    margin-top: 30px;
+}
+
+.display div:nth-child(1),.display div:nth-child(2),.display div:nth-child(3){
+    background: #6b6b6b;
+    padding: 12px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+.display div:nth-child(1) div ul li:nth-child(even):hover {
+    background: rgba(232, 13, 232, 0.178);
+}
 
 
 

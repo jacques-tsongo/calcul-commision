@@ -108,3 +108,15 @@ function showPages(content) {
     loadAllData();
     chargerGraphe();
 }
+
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const page = button.getAttribute('data-page');
+        loadPage(page);
+    });
+});

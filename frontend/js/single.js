@@ -13,7 +13,7 @@ buttons.forEach(button => {
 
 // }
 
-// loadPage();
+loadPage('ajouter-achat');
 
 //active button
 buttons.forEach(button => {
@@ -83,10 +83,22 @@ function renderPage(page) {
 
         case 'afficher-relations':
             mainSection.innerHTML = `
-                <div class="card">
-                    <h2>Liste des relations</h2>
-                    <div id="relationsList"></div>
+                <section class="display card">
+                <div class="clientsBar">
+                    <div>
+                        <h3>Clients</h3>
+                        <ul id="clientsList"></ul>
+                    </div>
                 </div>
+                <div>
+                    <h3>Relations</h3>
+                    <ul id="relationsList"></ul>
+                </div>
+                <div>
+                    <h3>Achats</h3>
+                    <ul id="achatsList"></ul>
+                </div>
+            </section>
             `;
             break;
 
