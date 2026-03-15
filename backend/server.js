@@ -23,14 +23,13 @@ app.use('/api/commissions', commissionRoutes);
 app.use('/api/clients', clientRoutes);
 
 // enovie de la premiere route de la page acceuil
-app.get('/', (req, res) => {
+app.get('/c', (req, res) => {
   res.status(200).render('indexe');
 });
-app.get('/e', (req, res) => {
+
+app.get('/', (req, res) => {
   res.status(200).render('index');
 });
-
-
 
 //le port d'ecoute du serveur
 const PORT = 3100;

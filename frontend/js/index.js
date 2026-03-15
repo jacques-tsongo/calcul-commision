@@ -269,12 +269,12 @@ async function chargerGraphe() {
                 selector: 'node',
                 style: {
                     'label': 'data(label)',
-                    'background-color': '#00c8ff',
+                    'background-color': '#04151a07',
                     'background-gradient-direction': 'radial-gradient',
                     'color': '#ffffff',
                     'text-valign': 'center',
                     'text-halign': 'center',
-                    'font-size': '16px',
+                    'font-size': '18px',
                     'font-weight': 'bold',
                     'width': 150,
                     'height': 50,
@@ -288,7 +288,7 @@ async function chargerGraphe() {
                 style: {
                     'width': 'mapData(weight, 0, 1000, 2, 12)',
                     'label': 'data(weight)',
-                    'font-size': '14px',
+                    'font-size': '16px',
                     'color': '#ffffff',
                     'text-background-color': '#000000',
                     'text-background-opacity': 0.6,
