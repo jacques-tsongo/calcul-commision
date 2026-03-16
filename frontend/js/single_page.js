@@ -3,7 +3,7 @@ const buttons = document.querySelectorAll(".btn_active");
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    loadPage("ajouter-achat");
+    loadPage("ajouter-client");
 
     buttons.forEach(btn => {
         btn.addEventListener("click", () => {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function loadPage(page){
 
-    if(page === "ajouter-achat"){
+    if(page === "ajouter-client"){
 
         main_section.innerHTML = `
         <section class="achats">
@@ -40,6 +40,19 @@ function loadPage(page){
         </section>
         `;
 
+    }
+    else if(page === "ajouter-achat"){
+        main_section.innerHTML = `
+            <section>
+                <form action="/api/commissions/achats" method="POST">
+                    <h2>Enregistrer un achat</h2>
+                    <label>Choisir le client qui achète :</label>
+                    <select name="client_id" id="buyerSelect"></select> <input type="number" name="montant"
+                        placeholder="Montant ($)" required>
+                    <button type="submit">Enregistrer l'achat</button>
+                </form>
+            </section>
+        `;
     }
 
 
